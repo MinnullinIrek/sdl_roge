@@ -1,0 +1,9 @@
+[submodule "vendor/SDL"]
+	path = vendor/SDL
+	url = https://github.com/libsdl-org/SDL.git
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/google/googletest.git
+[submodule "fsm-cxx"]
+	path = fsm-cxx
+	url = https://github.com/hedzr/fsm-cxx.git
