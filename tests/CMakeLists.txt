@@ -4,7 +4,10 @@
 set(CMAKE_CXX_STANDART 20)
 #set(CMAKE_CXX_STANDART_REQUIRED ON)
 add_executable(tests)
-target_sources(tests PRIVATE test_main.cpp)
+target_sources(tests PRIVATE 
+  test_main.cpp
+  test_cash.cpp
+  )
 target_compile_features(tests PRIVATE cxx_std_17)
 
 

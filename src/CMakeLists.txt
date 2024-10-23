@@ -17,6 +17,9 @@ add_library(utils
   utils/subscriber.h
   utils/subscriber.cpp
   utils/random.h
+  utils/console.cpp
+  utils/console.h
+  utils/templateCash.hpp
 )
 
 
@@ -41,6 +44,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE vendor utils PUBLIC  ${BOOST_LIB})
 target_include_directories(${PROJECT_NAME} PUBLIC 
   ../vendor/SDL/include/SDL3
   utils/
+  ../vendor/CppConsoleGameLibrary
 )
+
 
 

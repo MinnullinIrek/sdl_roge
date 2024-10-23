@@ -7,3 +7,6 @@
 [submodule "fsm-cxx"]
 	path = fsm-cxx
 	url = https://github.com/hedzr/fsm-cxx.git
+[submodule "src/utils/CppConsoleGameLibrary"]
+	path = src/utils/CppConsoleGameLibrary
+	url = https://git.homegu.com/DavDag/CppConsoleGameLibrary.git

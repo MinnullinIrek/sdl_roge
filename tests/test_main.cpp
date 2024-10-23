@@ -2,15 +2,12 @@
 // #include "coords.h"
 
 #include "coords.h"
-#include "subscriber.h"
-
-#include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "gtest/gtest.h"
+#include "subscriber.h"
+using ::testing::_;
+using ::testing::ExpectationSet;
 
-// using ::testing::_;
-// using ::testing::ExpectationSet;
-
-// #include "../googletest/googletest/include/gtest/gtest.h"
 TEST(_test, null_term_str_sort) { EXPECT_EQ(true, true); }
 
 TEST(utils_test, coord) {
@@ -66,14 +63,10 @@ TEST(utils_test, coord) {
   }
 }
 
-using ::testing::_;
-using ::testing::ExpectationSet;
-
 class SubscriberMock : public Subscriber {
  public:
   MOCK_METHOD1(notify, void(std::weak_ptr<Publisher>));
 };
-
 
 TEST(header_test, subscriber) {
   std::shared_ptr<Publisher> pb = std::make_shared<Publisher>();
@@ -82,7 +75,6 @@ TEST(header_test, subscriber) {
   auto sb2 = std::make_shared<SubscriberMock>();
   pb->addSubscriber(sb1);
   pb->addSubscriber(sb2);
-
 
   {
     EXPECT_CALL(((*sb1)), notify(_)).Times(1);
