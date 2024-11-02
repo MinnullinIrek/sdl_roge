@@ -7,7 +7,7 @@
 
 using TranslatableText = std::string;
 using Description = std::string;
-using Resurce = std::string;
+using Resource = std::string;
 using SymbIdentifier = char;
 
 struct Name {
@@ -21,19 +21,19 @@ struct Color {
 };
 
 struct Identifier {
-  Resurce adress;
+  Resource adress;
   SymbIdentifier charId;
   Color color;
   Color bgColor;
 };
 
 class ToString {
-public:
+ public:
   virtual Description toString() const = 0;
 };
 
 class ToIdentifier {
-public:
+ public:
   virtual Identifier toIdentifier() const = 0;
 };
 
@@ -41,4 +41,12 @@ struct UtilConsts {
   static Identifier EmptyIdentifier;
 };
 
-#endif // HEADERS_H
+struct Text {
+  Text(const std::string& text, const Color& color, const Color& bgColor)
+      : m_text(text), m_color(color), m_bgColor(bgColor) {}
+  std::string m_text;
+  Color m_color;
+  Color m_bgColor;
+};
+
+#endif  // HEADERS_H

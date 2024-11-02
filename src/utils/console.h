@@ -12,7 +12,7 @@
 #include "templateCash.hpp"
 #include "coords.h"
 
-class ConsoleGame : public Game
+class ConsoleGame : public ConsoleWindows
 {
   TemplateCash<uint64_t, WORD> cash;
  public:
@@ -32,13 +32,13 @@ class ConsoleGame : public Game
   bool IsKeyPressed(int key);
   template <typename Color>
   void DrawFrame(float x, float y, float w, float h, FrameType type, Color&& color, Color&& bgColor) {
-    Game::DrawFrame(
+    ConsoleWindows::DrawFrame(
         (int)x, (int)y, (int)w, (int)h, type, 
         colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
   }
   template <typename Color>
   void DrawWords(float x, float y, const std::string& text, Color&& color, Color&& bgColor) {
-    Game::DrawWords((int)x, (int)y, text.c_str(), text.size(), colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
+    ConsoleWindows::DrawWords((int)x, (int)y, text.c_str(), text.size(), colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
   }
 
   template <typename Color>
@@ -46,7 +46,7 @@ class ConsoleGame : public Game
     assert(r.height() >= 0);
     auto t = text.substr(0, r.width());
     for (int y = r.lu.y; y <= r.rd.y && !t.empty(); ++y) {
-    Game::DrawWords(
+    ConsoleWindows::DrawWords(
         r.lu.x,
         r.lu.y,
         t.c_str(),
@@ -98,6 +98,14 @@ class ConsoleGame : public Game
         } else {
         col = F_GREEN;
         }
+    }
+
+    if (color.r - color.b > 50 && color.r - color.g > 50) {
+      if (color.g > 125) {
+        col = F_LIGHTRED;
+      } else {
+        col = F_RED;
+      }
     }
 
     if (color.g - color.b < 0 && color.g - color.r < 0) {
