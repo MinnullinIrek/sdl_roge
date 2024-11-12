@@ -22,7 +22,7 @@ Cell::~Cell() {}
 
 Identifier Cell::toIdentifier() const { 
 
-	if (this->m_holder) {
+	if (this->m_holder && m_holder->hasIdentifier()) {
 		return m_holder->getIdentifier();
 	}
 	

@@ -18,6 +18,10 @@ struct Name {
 struct Color {
   Color(uint8_t r = 0, uint8_t g = 0, uint8_t b = 0) : r(r), g(g), b(b) {}
   uint8_t r, g, b;
+  bool operator==(const Color& c) const { return c.r == r && c.b == b && c.g == g; }
+  static Color white;
+  static Color black;
+  static Color gray;
 };
 
 struct Identifier {

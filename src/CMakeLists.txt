@@ -20,6 +20,7 @@ add_library(utils
   utils/log.h
   utils/log.cpp
   utils/headers.h
+  utils/headers.cpp  
   utils/coords.h
   utils/coords.cpp
   utils/random.h

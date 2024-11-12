@@ -49,6 +49,7 @@ class Map : public Publisher {
   Identifier getIdentifier(const Coord& cd);
 
  protected:
+  std::shared_ptr<Cell> getCellOrCreate(const CoordPair<int>& cd);
   CoordPair<int> m_size;
   std::unordered_map<CoordPair<int>, std::shared_ptr<Cell>, HashFunctionCoord> m_cells;
 };

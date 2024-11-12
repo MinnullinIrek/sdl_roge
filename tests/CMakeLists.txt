@@ -7,6 +7,7 @@ add_executable(tests)
 target_sources(tests PRIVATE 
   test_main.cpp
   test_cash.cpp
+  test_map.cpp
   )
 target_compile_features(tests PRIVATE cxx_std_17)
 
@@ -17,7 +18,8 @@ target_include_directories(tests PUBLIC
   ../googletest/googlemock/include/
   ../src/units/
   ../src/maps/
-  ../src/text_work/
+  ../src/text_w
+  ork/
   ../src/utils/
 )
 

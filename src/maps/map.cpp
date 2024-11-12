@@ -24,6 +24,9 @@ void Map::setCellHolder(const CoordPair<int>& coord, std::shared_ptr<CellHolder>
 
 std::shared_ptr<Cell> Map::getCell(const CoordPair<int>& cd) {
   assert(cd < m_size);
+  if (!m_cells.contains(cd)) {
+    return nullptr;
+  }
   return m_cells[cd];
 }
 
@@ -31,8 +34,8 @@ bool Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>&
   assert(nextPos < m_size);
   bool result = false;
   if (nextPos < m_size) {
-    auto& cell1 = m_cells.at(currentPos);
-    auto& cell2 = m_cells.at(nextPos);
+    auto cell1 = getCellOrCreate(currentPos);
+    auto cell2 = getCellOrCreate(nextPos);
     auto unit1 = cell1->getHolder();
     auto unit2 = cell2->getHolder();
     assert(unit1);
@@ -55,6 +58,14 @@ bool Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>&
     emit();
   }
   return result;
+}
+
+std::shared_ptr<Cell> Map::getCellOrCreate(const CoordPair<int>& cd)
+{
+  if (!m_cells.contains(cd)) {
+    m_cells.emplace(cd, std::make_shared<Cell>());
+  }
+  return m_cells.at(cd);
 }
 
 void Map::setSeen(const CoordPair<int>& cd) {

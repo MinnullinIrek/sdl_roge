@@ -14,8 +14,8 @@ class CellHolder : public Component, public Publisher {
  public:
   virtual ~CellHolder() {}
   void moved() {}
-  Identifier getIdentifier() { return owner->GetComponent<VisualizationUnit>()->getIdentifier(); }
-  // std::shared_ptr<IMover> mover;
+  Identifier getIdentifier() const { return owner->GetComponent<VisualizationUnit>()->getIdentifier(); }
+  bool hasIdentifier() const { return owner->HasComponent<VisualizationUnit>(); }
 };
 
 #endif  // CELLhOLDER_H
