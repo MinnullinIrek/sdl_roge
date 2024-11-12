@@ -10,10 +10,20 @@ MainWindow::~MainWindow() {}
 
 void MainWindow::show(const std::function<void(Text&&, const Coord&)>& visualizator, const Coord& parentCd) {
   // LOG("\nMainWindow::show start [%d]", (int)m_currentWindowType);
-  auto currentWindow = m_windows.at(m_currentWindowType);
-  // LOG("\nMainWindow::show");
-  assert(currentWindow);
-  currentWindow->show(visualizator, parentCd);
+  {
+    auto currentWindow = m_windows.at(m_currentWindowType);
+
+    // LOG("\nMainWindow::show");
+    assert(currentWindow);
+    currentWindow->show(visualizator, parentCd);
+  }
+
+  {
+    auto logWindow = m_windows.at(EMainWindows::elog);
+    assert(logWindow);
+    logWindow->show(visualizator, parentCd);
+  }
+
   // LOG("\nMainWindow::show end");
 }
 void MainWindow::notify(std::weak_ptr<Publisher> /*publisher*/) {}

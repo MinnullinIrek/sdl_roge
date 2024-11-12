@@ -10,18 +10,19 @@ class CellHolder;
 
 class Cell : public ToIdentifier {
 public:
-  Cell(const Coord &coord, std::shared_ptr<CellHolder> holder, bool isSeen);
+  Cell();
+  Cell( std::shared_ptr<CellHolder> holder , bool isSeen );
   ~Cell();
 
   Identifier toIdentifier() const override;
   void setHolder(std::shared_ptr<CellHolder> object);
   std::shared_ptr<CellHolder> getHolder();
   void setSeen(bool isSeen);
-  bool getSeen();
+  bool getSeen() const;
 
 protected:
-  Coord m_coord;
-  std::shared_ptr<CellHolder> m_holder;
+  //Coord m_coord;
+  std::shared_ptr<CellHolder> m_holder = nullptr;
   bool m_isSeen = false;
 };
 

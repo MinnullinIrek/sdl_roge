@@ -16,7 +16,13 @@
 
 using namespace std::literals;
 
+
+#ifdef _DEBUG
+#define LOG(...) LogWindow::instance()->Log(__VA_ARGS__)
+#elif
 #define LOG(...) Logger::GetInstance().Log(__VA_ARGS__)
+#endif  // DEBUG
+
 
 class Logger {
   auto GetTime() const {

@@ -42,7 +42,7 @@ struct UtilConsts {
 };
 
 struct Text {
-  Text(const std::string& text, const Color& color, const Color& bgColor)
+  Text(const std::string& text = "", const Color& color = {0, 0, 0}, const Color& bgColor = {0, 0, 0})
       : m_text(text), m_color(color), m_bgColor(bgColor) {}
   std::string m_text;
   Color m_color;

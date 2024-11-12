@@ -7,7 +7,7 @@
 #include "subscriber.h"
 #include "iwindow.h"
 
-enum class EMainWindows { emap, einventory, echars };
+enum class EMainWindows { emap, einventory, echars, elog };
 
 class MainWindow : public IWindow, public Subscriber {
  private:

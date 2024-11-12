@@ -41,9 +41,17 @@ add_library(logic
   units/cell_holder.cpp
   units/unit.h
   units/unit.cpp
+  units/watching.h
+  units/watching.cpp
+  units/visualization_unit.h
+  units/visualization_unit.cpp
   maps/cell.h
   maps/cell.cpp
-)
+  maps/map.h
+  maps/map.cpp
+  maps/mover.h
+  maps/mover.cpp  
+  )
 
 target_compile_features(logic PUBLIC cxx_std_20)
 
@@ -70,12 +78,12 @@ add_library(visualiser
   # visualiser/inventory_window.h
   # visualiser/inventory_window.cpp
   visualiser/iwindow.h
-  # visualiser/log_window.h
-  # visualiser/log_window.cpp
+  visualiser/log_window.h
+  visualiser/log_window.cpp
   visualiser/main_window.h
   visualiser/main_window.cpp
-  # visualiser/map_window.h
-  # visualiser/map_window.cpp
+  visualiser/map_window.h
+  visualiser/map_window.cpp
   # visualiser/shower.h
   # visualiser/shower.cpp
   # visualiser/tab.h
@@ -87,22 +95,27 @@ add_library(visualiser
   )
   target_compile_features(visualiser PUBLIC cxx_std_20)
 
+target_include_directories(visualiser PUBLIC 
+  utils/
+  maps/
+  game_components/
+)
+
 target_include_directories(logic PUBLIC 
   utils/
   units/
   maps/
   game_components/
 )
+
+
 target_include_directories(components PUBLIC 
   utils/
 )
 
-target_include_directories(visualiser PUBLIC 
-  utils/
-)
 
 target_link_libraries(components PRIVATE utils PUBLIC  ${BOOST_LIB})
-
+target_link_libraries(visualiser PRIVATE logic PUBLIC  ${BOOST_LIB})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE vendor utils visualiser components logic PUBLIC  ${BOOST_LIB})
 target_include_directories(${PROJECT_NAME} PUBLIC 

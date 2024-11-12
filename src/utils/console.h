@@ -31,9 +31,13 @@ class ConsoleGame : public ConsoleWindows
   bool IsKeyDown(int key);
   bool IsKeyPressed(int key);
   template <typename Color>
-  void DrawFrame(float x, float y, float w, float h, FrameType type, Color&& color, Color&& bgColor) {
+  void DrawFrame(const RectangleI& rect, FrameType type, Color&& color, Color&& bgColor) {
     ConsoleWindows::DrawFrame(
-        (int)x, (int)y, (int)w, (int)h, type, 
+        (int)rect.lu.x,
+        (int)rect.lu.y,
+        (int)rect.width(),
+        (int)rect.height(),
+        type, 
         colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
   }
   template <typename Color>

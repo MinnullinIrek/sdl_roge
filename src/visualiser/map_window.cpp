@@ -4,20 +4,24 @@
 #include <memory>
 #include <vector>
 
-#include "../game_struct.h"
+#include "entity.h"
+#include "watching.h"
+// #include "../game_struct.h"
 #include "../maps/cell.h"
 #include "../maps/map.h"
-#include "../units/IUnit.h"
-#include "../units/mover.h"
-#include "../utils/consts_reader.h"
-#include "../utils/visualEffect.h"
+#include "mover.h"
+#include "unit.h"
+// #include "../units/mover.h"
+// #include "../utils/consts_reader.h"
+// #include "../utils/visualEffect.h"
 #include "visualiser.h"
 
-MapWindow::MapWindow(const Rectangle& r) : IWindow(r) {}
+MapWindow::MapWindow(const RectangleI& r) : IWindow(r) {}
 
 void MapWindow::show(const std::function<void(Text&&, const Coord&)>& visualizator, const Coord& parentCd) {
   for (const auto& cdCell : m_cells) {
-    visualizator(cdCell.second, cdCell.first + parentCd);
+    visualizator(
+        Text(std::string(&cdCell.second.charId), cdCell.second.color, cdCell.second.bgColor), cdCell.first + parentCd);
   }
 }
 
@@ -31,24 +35,27 @@ void MapWindow::notify(std::weak_ptr<Publisher> publisher) {
         auto heroCoord = mover->getCoord();
 
         auto cell = map->getCell(heroCoord);
-        auto h = cell->getUnit();
-        auto hero = std::dynamic_pointer_cast<Unit>(h);
-        // auto& w = hero->getWatchingCoords();
+        auto h = cell->getHolder();
+        auto hero = h;
 
-        auto& watchingCoords = std::dynamic_pointer_cast<Unit>(map->getCell(heroCoord)->getUnit())->getWatchingCoords();
-        Coord windowSize = {m_rectangle.rd.x - m_rectangle.lu.x, m_rectangle.rd.x - m_rectangle.lu.y};
+        auto owner = hero->owner;
 
-        Coord mapStart{0, 0};
+        auto& w = hero->owner->GetComponent<IWatching>()->getWatchingCoords();
+
+        auto& watchingCoords = w;
+        CoordPair<int> windowSize = {m_rectangle.rd.x - m_rectangle.lu.x, m_rectangle.rd.x - m_rectangle.lu.y};
+
+        CoordPair<int> mapStart{0, 0};
         mapStart.x = std::max((heroCoord.x - (windowSize.x) / 2), 0);
         mapStart.y = std::max((heroCoord.y - (windowSize.y) / 2), 0);
 
         auto startPos = m_rectangle.lu;
-        auto endPos = m_rectangle.lu + mapStart + windowSize - Coord{startPos.x, startPos.y};
+        auto endPos = m_rectangle.lu + mapStart + windowSize - CoordPair<int>{startPos.x, startPos.y};
 
         m_cells.clear();
         for (auto x = mapStart.x; x < endPos.x; ++x) {
           for (auto y = mapStart.y; y < endPos.y; ++y) {
-            Coord cd = {x, y};
+            CoordPair<int> cd = {x, y};
             auto id = map->getIdentifier(cd);
             if (watchingCoords.find(cd) == watchingCoords.end()) {
               static Color gray = {125, 125, 125};
@@ -58,18 +65,19 @@ void MapWindow::notify(std::weak_ptr<Publisher> publisher) {
           }
         }
       }
+      //  } else {
+
+      //    auto visualEffects = std::dynamic_pointer_cast<VisualEffect>(locked);
+
+      //    for (int i = 0; i < visualEffects->m_currentState->size() - 1; i++) {
+      //      for (auto& effect : visualEffects->m_currentState[i]) {
+      //        m_cells[effect.cd] = effect.id;
+      //      }
+
+      //    }
+      //  }
     } else {
-
-      auto visualEffects = std::dynamic_pointer_cast<VisualEffect>(locked);
-
-      for (int i = 0; i < visualEffects->m_currentState->size() - 1; i++) {
-        for (auto& effect : visualEffects->m_currentState[i]) {
-          m_cells[effect.cd] = effect.id;
-        }
-
-      }
+      throw("MapWindow::notify empty publisher");
     }
-  } else {
-    throw("MapWindow::notify empty publisher");
   }
 }
