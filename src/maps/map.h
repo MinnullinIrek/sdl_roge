@@ -43,7 +43,7 @@ class Map : public Publisher {
   MapIterator begin();
   MapIterator end();
   std::shared_ptr<Cell> getCell(const CoordPair<int>& cd);
-  bool moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>& nextPos);
+  Coord moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>& nextPos);
   void setSeen(const CoordPair<int>&);
   bool isWall(const CoordPair<int>& cd) const;
   Identifier getIdentifier(const Coord& cd);

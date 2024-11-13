@@ -6,7 +6,7 @@
 
 #include "entity.h"
 #include "watching.h"
-// #include "../game_struct.h"
+ #include "../game_struct.h"
 #include "../maps/cell.h"
 #include "../maps/map.h"
 #include "mover.h"
@@ -34,9 +34,9 @@ void MapWindow::notify(std::weak_ptr<Publisher> publisher) {
       if (map) {
         auto heroCoord = mover->getCoord();
 
-        auto cell = map->getCell(heroCoord);
-        auto h = cell->getHolder();
-        auto hero = h;
+        //auto cell = map->getCell(heroCoord);
+        //auto h = cell->getHolder();
+        auto hero = gameStruct.hero;
 
         auto owner = hero->owner;
 

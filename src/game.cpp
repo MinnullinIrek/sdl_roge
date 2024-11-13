@@ -35,10 +35,10 @@ void Game::loadLevel(int levelNumber) {
 }
 
 void Game::processInput() { 
-  auto action = m_keyboard->getAction();
-  if (action) {
-      //do something
-  }
+  //auto action = m_keyboard->getAction();
+  //if (action) {
+  //    //do something
+  //}
 }
 
 void Game::update(float dt) {

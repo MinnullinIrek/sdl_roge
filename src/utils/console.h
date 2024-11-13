@@ -7,19 +7,20 @@
 #include <vector>
 #include <assert.h>
 
-#include "CppConsoleGameLibrary/Base4ConsoleGames.hpp"
+#include "console_windows.h"
 #include "headers.h"
 #include "templateCash.hpp"
 #include "coords.h"
 
-class ConsoleGame : public ConsoleWindows
+class ConsoleGame 
 {
+  ConsoleWindows window;
   TemplateCash<uint64_t, WORD> cash;
  public:
   ConsoleGame();
   template <typename Color>
   void fill(float x, float y, char ch, Color&& color, Color&& bgColor) {
-    FillCell(
+     window.fillCell(
         static_cast<short>(x),
         static_cast<short>(y),
         ch,
@@ -28,11 +29,11 @@ class ConsoleGame : public ConsoleWindows
   void DrawBuffer();
   void DrawBufferRegion(short x, short y, short columns, short rows);
   void FillBuffer(CHAR c, WORD attr);
-  bool IsKeyDown(int key);
-  bool IsKeyPressed(int key);
+ /* bool IsKeyDown(int key);
+  bool IsKeyPressed(int key);*/
   template <typename Color>
   void DrawFrame(const RectangleI& rect, FrameType type, Color&& color, Color&& bgColor) {
-    ConsoleWindows::DrawFrame(
+    window.drawFrame(
         (int)rect.lu.x,
         (int)rect.lu.y,
         (int)rect.width(),
@@ -42,7 +43,7 @@ class ConsoleGame : public ConsoleWindows
   }
   template <typename Color>
   void DrawWords(float x, float y, const std::string& text, Color&& color, Color&& bgColor) {
-    ConsoleWindows::DrawWords((int)x, (int)y, text.c_str(), text.size(), colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
+    window.drawWords((int)x, (int)y, text.c_str(), text.size(), colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
   }
 
   template <typename Color>
@@ -50,7 +51,7 @@ class ConsoleGame : public ConsoleWindows
     assert(r.height() >= 0);
     auto t = text.substr(0, r.width());
     for (int y = r.lu.y; y <= r.rd.y && !t.empty(); ++y) {
-    ConsoleWindows::DrawWords(
+    window.drawWords(
         r.lu.x,
         r.lu.y,
         t.c_str(),
@@ -61,6 +62,11 @@ class ConsoleGame : public ConsoleWindows
 
   void SetTitle(const char* title);
   void SetWindowSize(SHORT width, SHORT height, bool adjustBuffer);
+
+  bool isKeyDown(int key);
+  bool isKeyPressed(int key);
+
+  EAction getPressed();
 
  private:
   template <typename Color>
@@ -147,6 +153,9 @@ class ConsoleGame : public ConsoleWindows
   uint64_t RGBToHex(const Color& color) {    
       return (((uint64_t)color.r & 0xff) << 16) + (((uint64_t)color.g & 0xff) << 8) + ((uint64_t)color.b & 0xff); 
   }
+
+  std::unordered_map<EAction, int> m_actionKey;
+
 };
 
 #endif  // !CONSOLE_H

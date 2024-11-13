@@ -6,12 +6,13 @@
 #include "map.h"
 
 void SimpleMover::moveInDirection(const CoordPair<int>& coord) {
-  m_map->moveUnitFromTo(m_coord, coord);
-  emit();
+  setCoord(m_map->moveUnitFromTo(m_coord, m_coord + coord));
 }
 void SimpleMover::setCoord(const CoordPair<int>& currentPos) {
-  m_coord = currentPos;
-  emit();
+  if (m_coord != currentPos) {
+    m_coord = currentPos;
+    emit();
+  }
 }
 const CoordPair<int>& SimpleMover::getCoord() const { return m_coord; }
 std::weak_ptr<Map> SimpleMover::getMap() { return m_map; }

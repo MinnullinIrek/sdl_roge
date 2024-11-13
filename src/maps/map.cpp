@@ -30,9 +30,9 @@ std::shared_ptr<Cell> Map::getCell(const CoordPair<int>& cd) {
   return m_cells[cd];
 }
 
-bool Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>& nextPos) {
+Coord Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>& nextPos) {
   assert(nextPos < m_size);
-  bool result = false;
+  Coord result = currentPos;
   if (nextPos < m_size) {
     auto cell1 = getCellOrCreate(currentPos);
     auto cell2 = getCellOrCreate(nextPos);
@@ -51,10 +51,10 @@ bool Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>&
       }*/
       cell2->setHolder(unit1);
       cell1->setHolder(nullptr);
-      result = true;
+      result = nextPos;
     //}
   }
-  if (result) {
+  if (result != currentPos) {
     emit();
   }
   return result;

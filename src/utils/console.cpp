@@ -1,20 +1,38 @@
 #include "console.h"
 
-ConsoleGame::ConsoleGame() : ConsoleWindows(), cash(50) {}
-
-void ConsoleGame::DrawBuffer() { ConsoleWindows::DrawBuffer(); }
-
-void ConsoleGame::DrawBufferRegion(short x, short y, short columns, short rows) {
-  ConsoleWindows::DrawBufferRegion(x, y, columns, rows);
+ConsoleGame::ConsoleGame() : window(), cash(50) {
+  m_actionKey[EAction::down] = KEY_ARROW_DOWN;
+  m_actionKey[EAction::left] = KEY_ARROW_LEFT;
+  m_actionKey[EAction::up] = KEY_ARROW_UP;
+  m_actionKey[EAction::right] = KEY_ARROW_RIGHT;
 }
 
-void ConsoleGame::FillBuffer(CHAR c, WORD attr) { ConsoleWindows::FillBuffer(c, attr); }
+void ConsoleGame::DrawBuffer() { window.drawBuffer(); }
 
-bool ConsoleGame::IsKeyDown(int key) { return ConsoleWindows::IsKeyDown(key); }
+void ConsoleGame::DrawBufferRegion(short x, short y, short columns, short rows) {
+  window.drawBufferRegion(x, y, columns, rows);
+}
 
-bool ConsoleGame::IsKeyPressed(int key) { return ConsoleWindows::IsKeyPressed(key); }
+void ConsoleGame::FillBuffer(CHAR c, WORD attr) { window.fillBuffer(c, attr); }
 
-void ConsoleGame::SetTitle(const char* title) { ConsoleWindows::SetTitle(title); }
+// bool ConsoleGame::IsKeyDown(int key) { return window.isKeyDown(key); }
+//
+// bool ConsoleGame::IsKeyPressed(int key) { return window.isKeyPressed(key); }
+
+void ConsoleGame::SetTitle(const char* title) { window.setTitle(title); }
 void ConsoleGame::SetWindowSize(SHORT width, SHORT height, bool adjustBuffer) {
-  ConsoleWindows::SetWindowSize(width, height, adjustBuffer);
+  window.setWindowSize(width, height, adjustBuffer);
+}
+
+bool ConsoleGame::isKeyDown(int key) { return window.isKeyDown(key); }
+
+bool ConsoleGame::isKeyPressed(int key) { return window.isKeyPressed(key); }
+
+EAction ConsoleGame::getPressed() {
+  for (const auto& a : m_actionKey) {
+    if (isKeyDown(a.second)) {
+      return a.first;
+    }
+  }
+  return EAction::none;
 }

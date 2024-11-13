@@ -5,6 +5,8 @@
 #include <cstdint>
 #include <string>
 
+enum class EAction { none, left, right, up, down, inventory, map, undo, charAction, effect };
+
 using TranslatableText = std::string;
 using Description = std::string;
 using Resource = std::string;

@@ -6,7 +6,7 @@
 #include "map.h"
 #include "mover.h"
 
-void SimpleWatching::lookAround(const std::shared_ptr<Map>& map, const CoordPair<int>& coord) {
+void SimpleWatching::lookAround(const std::shared_ptr<Map>& map, const CoordPair<int>& coord, bool see) {
   auto watchingLength = 10;  // m_chars->getValue(static_cast<int>(ECharTypes::perception)) / 2;
   // if (watchingLength == 0) {
   //   // throw "person is blind";
@@ -23,7 +23,7 @@ void SimpleWatching::lookAround(const std::shared_ptr<Map>& map, const CoordPair
   };
 
   m_watchingCoords.clear();
-  m_watchingCoords[cd] = true;
+  m_watchingCoords[cd] = see;
   map->setSeen(cd);
 
   std::list<CoordPair<int>> checkingCoords;
@@ -57,7 +57,9 @@ void SimpleWatching::notify(std::weak_ptr<Publisher> publisher) {
   assert(publisher.lock());
   auto mover = std::dynamic_pointer_cast<IMover>(publisher.lock());
   if (mover) {
-    lookAround(mover->getMap().lock(), mover->getCoord());
+    lookAround(mover->getMap().lock(), m_lastCoord, false);
+    lookAround(mover->getMap().lock(), mover->getCoord(), true);
+    m_lastCoord = mover->getCoord();
   }
 }
 
