@@ -17,6 +17,10 @@
 #include "visualization_unit.h"
 #include "watching.h"
 #include "window.h"
+#include "map_generator.h"
+
+ static EntityManager manager;
+
 
 void initMapState(MainWindow& mainWindow) {
   gameStruct.actor->setStrategy(gameStruct.m_strategies.at(fsm_cxx::GameState::MapState).get());
@@ -50,31 +54,39 @@ void gameLoop(
   }
 }
 
+std::shared_ptr<CellHolder> createWhall() { 
+    Entity* whallEntity = new Entity(manager); 
+    auto whall = std::make_shared<CellHolder>();
+    whallEntity->addComponent<CellHolder>(whall);
+    whallEntity->addComponent<VisualizationUnit>(
+        std::make_shared<VisualizationUnit>(Identifier{"", '#', {255, 255, 255}, {0, 0, 0}}));
+    return whall;
+}
+
 int main(int argc, char** argv) {
   ConsoleGame game;
   Color c(255, 0, 0);
   Color cb(0, 0, 0);
 
-  EntityManager manager;
+
   Entity* player = new Entity(manager);
 
   player->AddComponent<IUnit>();
   std::shared_ptr<IUnit> unit = player->GetComponent<IUnit>();
-  //(new IUnit());
 
   player->addComponent<VisualizationUnit>(
       std::make_shared<VisualizationUnit>(Identifier{"", '@', {255, 255, 255}, {0, 0, 0}}));
   unit->name = "name";
   unit->description = "description";
 
-  // unit->mover = std::make_shared<SimpleMover>();
   auto mover = std::make_shared<SimpleMover>();
   player->addComponent<IMover>(mover);
 
   auto watching = std::make_shared<SimpleWatching>();
   player->addComponent<IWatching>(watching);
 
-  std::shared_ptr<Map> m(new Map({100, 100}));
+  SimpleMapGenerator mapGenerator;
+  std::shared_ptr<Map> m = mapGenerator.generateMap();  //(new Map({100, 100}));
 
   LogWindow::init({{0, 43}, {80, 80}});
 
@@ -83,7 +95,6 @@ int main(int argc, char** argv) {
   auto mo = unit->owner->GetComponent<IMover>();
   gameStruct.hero = unit;
 
-  // unit->mover->addSubscriber(mapWindow);
   mo->changeMap(m);
   mover->addSubscriber(watching);
   mo->addSubscriber(mapWindow);
@@ -116,19 +127,6 @@ int main(int argc, char** argv) {
   LOG("second ", "message");
 
   gameLoop(mw, game, logWindow, mapWindow, 60);
-
- /* while (true) {
-    mw.show(l, {0, 0});
-    game.DrawFrame(logWindow->m_rectangle, FrameType::SINGLE, Color{125, 125, 125}, Color{0, 0, 0});
-    game.DrawFrame(mapWindow->m_rectangle, FrameType::SINGLE, Color{125, 125, 125}, Color{0, 0, 0});
-
-    game.DrawBuffer();
-
-    auto act = game.getPressed();
-    if (act != EAction::none) {
-      gameStruct.keyboard->setKey(act, true);
-    }
-  }*/
 
   return 0;
 }

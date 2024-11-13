@@ -18,4 +18,7 @@ class CellHolder : public Component, public Publisher {
   bool hasIdentifier() const { return owner->HasComponent<VisualizationUnit>(); }
 };
 
+
+std::shared_ptr<CellHolder> createWhall();
+
 #endif  // CELLhOLDER_H

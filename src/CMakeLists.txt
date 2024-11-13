@@ -80,6 +80,8 @@ add_library(logic
   maps/map.cpp
   maps/mover.h
   maps/mover.cpp  
+  maps/map_generator.h
+  maps/map_generator.cpp
   )
 
 target_compile_features(logic PUBLIC cxx_std_20)
