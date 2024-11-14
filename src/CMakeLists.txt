@@ -74,6 +74,12 @@ add_library(logic
   units/watching.cpp
   units/visualization_unit.h
   units/visualization_unit.cpp
+  units/interactor.h
+  units/interactor.cpp
+  units/group.cpp
+  units/group.h 
+  units/char_component.h
+  units/char_component.cpp
   maps/cell.h
   maps/cell.cpp
   maps/map.h
@@ -84,7 +90,15 @@ add_library(logic
   maps/map_generator.cpp
   )
 
+
+
 target_compile_features(logic PUBLIC cxx_std_20)
+
+add_library(chars
+  chars/base_char.h
+  chars/base_char.cpp  
+)
+target_compile_features(chars PUBLIC cxx_std_20)
 
 add_library(components 
   game_components/component.h
@@ -137,6 +151,8 @@ target_include_directories(logic PUBLIC
   units/
   maps/
   game_components/
+  chars/
+  ../lua-5.4.7/src
 )
 
 
@@ -144,16 +160,23 @@ target_include_directories(components PUBLIC
   utils/
 )
 
+target_include_directories(chars PUBLIC 
+  utils/
+)
+# add_subdirectory(../lua-5.4.7)
 
 target_link_libraries(components PRIVATE utils PUBLIC  ${BOOST_LIB})
 target_link_libraries(visualiser PRIVATE logic PUBLIC  ${BOOST_LIB})
+target_link_libraries(chars PRIVATE utils PUBLIC  ${BOOST_LIB})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE vendor utils visualiser components logic PUBLIC  ${BOOST_LIB})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE vendor utils visualiser components logic LuaLib chars PUBLIC  ${BOOST_LIB})
 target_include_directories(${PROJECT_NAME} PUBLIC 
   ../vendor/SDL/include/SDL3
   utils/
   ../vendor/CppConsoleGameLibrary
   visualiser/
+  chars/
 )
 
 

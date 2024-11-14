@@ -18,6 +18,9 @@ add_subdirectory(vendor)
 add_subdirectory(src)
 add_subdirectory(googletest)
 add_subdirectory(tests)
+add_subdirectory(lua-5.4.7)
+
+
 
 
 
