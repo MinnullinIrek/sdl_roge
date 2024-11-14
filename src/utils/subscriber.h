@@ -31,7 +31,7 @@ class Publisher : public std::enable_shared_from_this<Publisher> {
   std::unordered_map<SubscriberKey, std::weak_ptr<Subscriber>> m_subscribers;
 };
 
-class Subscriber {
+class Subscriber  {
   friend Publisher;
 
  public:
@@ -44,5 +44,17 @@ class Subscriber {
  private:
   const Unique_Key m_key;
 };
+
+
+class SubscriberLambda : public Subscriber  {
+ public:
+  SubscriberLambda(std::function<void(std::weak_ptr<Publisher>)> && lambda);
+  ~SubscriberLambda() = default;
+
+ protected:
+  void notify(std::weak_ptr<Publisher> publisher) override;
+  std::function<void(std::weak_ptr<Publisher>)> m_lambda;
+};
+
 
 #endif  // SUBSCRIBER_H

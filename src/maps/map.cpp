@@ -4,6 +4,7 @@
 
 #include "cell.h"
 // #include "cell_holder.h"
+#include "group.h"
 
 Map::Map(const CoordPair<int>& size) : m_size(size) {}
 
@@ -18,7 +19,7 @@ void Map::setCellHolder(const CoordPair<int>& coord, std::shared_ptr<CellHolder>
   }
 
   m_cells[coord]->setHolder(holder);
-  
+
   emit();
 }
 
@@ -39,20 +40,13 @@ Coord Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>
     auto unit1 = cell1->getHolder();
     auto unit2 = cell2->getHolder();
     assert(unit1);
-    //if (unit2) {
-    //  auto interactor = unit1->getInteractor();
-    //  assert(interactor);
-    //  interactor->interact(unit1, unit2);
-    //} else {
-      //auto unit = std::dynamic_pointer_cast<Unit>(unit1);
-      /*if (unit) {
-        auto mover = unit->getMover();
-        mover->move(unit, cell2);
-      }*/
+    if (unit2) {
+      unit1->owner->GetComponent<Group>()->doAction(unit1, unit2);
+    } else {
       cell2->setHolder(unit1);
       cell1->setHolder(nullptr);
       result = nextPos;
-    //}
+    }
   }
   if (result != currentPos) {
     emit();
@@ -60,8 +54,7 @@ Coord Map::moveUnitFromTo(const CoordPair<int>& currentPos, const CoordPair<int>
   return result;
 }
 
-std::shared_ptr<Cell> Map::getCellOrCreate(const CoordPair<int>& cd)
-{
+std::shared_ptr<Cell> Map::getCellOrCreate(const CoordPair<int>& cd) {
   if (!m_cells.contains(cd)) {
     m_cells.emplace(cd, std::make_shared<Cell>());
   }
@@ -85,7 +78,6 @@ bool Map::isWall(const CoordPair<int>& cd) const {
 
   return false;
 }
-
 
 Identifier Map::getIdentifier(const Coord& cd) {
   if (m_cells.contains(cd)) {

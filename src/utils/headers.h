@@ -5,7 +5,11 @@
 #include <cstdint>
 #include <string>
 
+
+enum class ERelationType {none, whall, neutral, enemy, ally, compnion};
 enum class EAction { none, left, right, up, down, inventory, map, undo, charAction, effect };
+
+
 
 using TranslatableText = std::string;
 using Description = std::string;
@@ -28,7 +32,7 @@ struct Color {
 
 struct Identifier {
   Resource adress;
-  SymbIdentifier charId;
+  SymbIdentifier charId = ' ';
   Color color;
   Color bgColor;
 };

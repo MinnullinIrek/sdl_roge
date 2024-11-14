@@ -12,13 +12,12 @@ Subscriber::Subscriber() : m_key(unique()) {}
 
 void Publisher::emit() {
   std::weak_ptr<Publisher> wThis = shared_from_this();
-  std::for_each(m_subscribers.begin(), m_subscribers.end(),
-                [wThis](auto &subscriber) {
-                  auto lockedSubscriber = subscriber.second.lock();
-                  if (lockedSubscriber) {
-                    lockedSubscriber->notify(wThis);
-                  }
-                });
+  std::for_each(m_subscribers.begin(), m_subscribers.end(), [wThis](auto& subscriber) {
+    auto lockedSubscriber = subscriber.second.lock();
+    if (lockedSubscriber) {
+      lockedSubscriber->notify(wThis);
+    }
+  });
 }
 
 void Publisher::addSubscriber(std::weak_ptr<Subscriber> subscriber) {
@@ -48,5 +47,8 @@ void Publisher::checkZompies() {
   }
 }
 
-Publisher::Publisher(Publisher &&publisher)
-    : m_subscribers(std::move(publisher.m_subscribers)) {}
+Publisher::Publisher(Publisher&& publisher) : m_subscribers(std::move(publisher.m_subscribers)) {}
+
+SubscriberLambda::SubscriberLambda(std::function<void(std::weak_ptr<Publisher>)>&& lambda) { m_lambda = lambda; }
+
+void SubscriberLambda::notify(std::weak_ptr<Publisher> publisher) { m_lambda(publisher); }

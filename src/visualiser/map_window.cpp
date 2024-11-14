@@ -4,13 +4,13 @@
 #include <memory>
 #include <vector>
 
-#include "entity.h"
-#include "watching.h"
- #include "../game_struct.h"
+#include "../game_struct.h"
 #include "../maps/cell.h"
 #include "../maps/map.h"
+#include "entity.h"
 #include "mover.h"
 #include "unit.h"
+#include "watching.h"
 // #include "../units/mover.h"
 // #include "../utils/consts_reader.h"
 // #include "../utils/visualEffect.h"
@@ -20,8 +20,13 @@ MapWindow::MapWindow(const RectangleI& r) : IWindow(r) {}
 
 void MapWindow::show(const std::function<void(Text&&, const Coord&)>& visualizator, const Coord& parentCd) {
   for (const auto& cdCell : m_cells) {
-    visualizator(
-        Text(std::string(&cdCell.second.charId), cdCell.second.color, cdCell.second.bgColor), cdCell.first + parentCd);
+    std::string str = " ";
+    str[0] = cdCell.second.charId;
+    if (str[0] == '{' || str[0] == '}') {
+      int i = 0;
+      ++i;
+    }
+    visualizator(Text(str, cdCell.second.color, cdCell.second.bgColor), cdCell.first + parentCd);
   }
 }
 
@@ -34,8 +39,8 @@ void MapWindow::notify(std::weak_ptr<Publisher> publisher) {
       if (map) {
         auto heroCoord = mover->getCoord();
 
-        //auto cell = map->getCell(heroCoord);
-        //auto h = cell->getHolder();
+        // auto cell = map->getCell(heroCoord);
+        // auto h = cell->getHolder();
         auto hero = gameStruct.hero;
 
         auto owner = hero->owner;

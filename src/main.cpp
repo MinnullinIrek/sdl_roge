@@ -18,6 +18,7 @@
 #include "watching.h"
 #include "window.h"
 #include "map_generator.h"
+#include "group.h"
 
  static EntityManager manager;
 
@@ -60,6 +61,9 @@ std::shared_ptr<CellHolder> createWhall() {
     whallEntity->addComponent<CellHolder>(whall);
     whallEntity->addComponent<VisualizationUnit>(
         std::make_shared<VisualizationUnit>(Identifier{"", '#', {255, 255, 255}, {0, 0, 0}}));
+    
+    whallEntity->addComponent<Group>(std::make_shared<Group>(Group::whall));
+
     return whall;
 }
 
@@ -70,6 +74,8 @@ int main(int argc, char** argv) {
 
 
   Entity* player = new Entity(manager);
+
+  player->addComponent<Group>(std::make_shared<Group>(Group::hero));
 
   player->AddComponent<IUnit>();
   std::shared_ptr<IUnit> unit = player->GetComponent<IUnit>();
@@ -91,7 +97,7 @@ int main(int argc, char** argv) {
   LogWindow::init({{0, 43}, {80, 80}});
 
   std::shared_ptr<LogWindow> logWindow = LogWindow::instance();
-  std::shared_ptr<MapWindow> mapWindow = std::make_shared<MapWindow>(RectangleI{{5, 5}, {80, 40}});
+  std::shared_ptr<MapWindow> mapWindow = std::make_shared<MapWindow>(RectangleI{{0, 5}, {80, 44}});
   auto mo = unit->owner->GetComponent<IMover>();
   gameStruct.hero = unit;
 
