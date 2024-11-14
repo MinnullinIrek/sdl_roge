@@ -37,8 +37,10 @@ class BaseChar : public Publisher {
   BaseChar() : m_value(0), m_chType(0) {}
   BaseChar(CharValue value, int chType = 0) : m_value(value), m_chType(chType) {}
 
-  bool operator==(const BaseChar& bch) const { return m_value == bch.m_value; }
-  bool operator<(const BaseChar& bch) const { return m_value < bch.m_value; }
+  //bool operator==(const BaseChar& bch) const { return m_value == bch.m_value; }
+  //bool operator<(const BaseChar& bch) const { return m_value < bch.m_value; }
+  auto operator<=>(const BaseChar& bch) const { return m_value <=> bch.m_value; }
+
   BaseChar& operator=(const BaseChar& bch) {
     if (m_value != bch.m_value) {
       m_value = bch.m_value;
