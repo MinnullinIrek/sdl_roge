@@ -20,6 +20,8 @@
 #include "map_generator.h"
 #include "group.h"
 
+#include "lua.hpp"
+
  static EntityManager manager;
 
 
@@ -68,6 +70,11 @@ std::shared_ptr<CellHolder> createWhall() {
 }
 
 int main(int argc, char** argv) {
+  lua_State* L = luaL_newstate();
+  luaL_dostring(L, "x=42");
+  lua_close(L);
+
+
   ConsoleGame game;
   Color c(255, 0, 0);
   Color cb(0, 0, 0);
