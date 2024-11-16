@@ -1,29 +1,29 @@
 #include <cmath>
 
+#include <filesystem>
+
 #include "SDL.h"
 #include "actor/actor.h"
 #include "actor/actor_strategy_map.h"
 #include "console.h"
 #include "game_struct.h"
+#include "group.h"
 #include "headers.h"
 #include "keyboard.h"
 #include "log.h"
 #include "log_window.h"
+#include "lua_class.h"
 #include "main_window.h"
 #include "map.h"
+#include "map_generator.h"
 #include "map_window.h"
 #include "mover.h"
 #include "unit.h"
 #include "visualization_unit.h"
 #include "watching.h"
 #include "window.h"
-#include "map_generator.h"
-#include "group.h"
 
-#include "lua.hpp"
-
- static EntityManager manager;
-
+static EntityManager manager;
 
 void initMapState(MainWindow& mainWindow) {
   gameStruct.actor->setStrategy(gameStruct.m_strategies.at(fsm_cxx::GameState::MapState).get());
@@ -57,28 +57,25 @@ void gameLoop(
   }
 }
 
-std::shared_ptr<CellHolder> createWhall() { 
-    Entity* whallEntity = new Entity(manager); 
-    auto whall = std::make_shared<CellHolder>();
-    whallEntity->addComponent<CellHolder>(whall);
-    whallEntity->addComponent<VisualizationUnit>(
-        std::make_shared<VisualizationUnit>(Identifier{"", '#', {255, 255, 255}, {0, 0, 0}}));
-    
-    whallEntity->addComponent<Group>(std::make_shared<Group>(Group::whall));
+std::shared_ptr<CellHolder> createWhall() {
+  Entity* whallEntity = new Entity(manager);
+  auto whall = std::make_shared<CellHolder>();
+  whallEntity->addComponent<CellHolder>(whall);
+  whallEntity->addComponent<VisualizationUnit>(
+      std::make_shared<VisualizationUnit>(Identifier{"", '#', {255, 255, 255}, {0, 0, 0}}));
 
-    return whall;
-}
+  whallEntity->addComponent<Group>(std::make_shared<Group>(Group::whall));
+
+  return whall;
+};
 
 int main(int argc, char** argv) {
-  lua_State* L = luaL_newstate();
-  luaL_dostring(L, "x=42");
-  lua_close(L);
-
+  auto scriptPath =  std::filesystem::path( argv[argc - 1]).parent_path().string();
+  //auto curPath = std::filesystem::current_path().string();
 
   ConsoleGame game;
   Color c(255, 0, 0);
   Color cb(0, 0, 0);
-
 
   Entity* player = new Entity(manager);
 
@@ -138,6 +135,14 @@ int main(int argc, char** argv) {
   LOG("first coment");
   LOG("some ", "message");
   LOG("second ", "message");
+
+  gameStruct.m_luaClass = std::make_unique<LuaClass>();
+  gameStruct.m_luaClass->registerFunc("log", [](lua_State* L) -> int {
+    auto logString = lua_tostring(L, -1);
+    LOG(logString);
+    return 0;
+  });
+  gameStruct.m_luaClass->init(scriptPath);
 
   gameLoop(mw, game, logWindow, mapWindow, 60);
 

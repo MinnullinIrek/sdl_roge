@@ -42,7 +42,10 @@ add_library(utils
   utils/invoker.cpp
   utils/interactor.h
   utils/interactor.cpp
+  utils/lua_class.h
+  utils/lua_class.cpp
   
+
   utils/actor/actor.h
   utils/actor/actor.cpp
   utils/actor/actor_strategy.h
@@ -55,11 +58,6 @@ add_library(utils
   utils/actor/actor_strategy_inventory.cpp
   utils/actor/actor_strategy_map.h
   utils/actor/actor_strategy_map.cpp
-
-
-
-
-
 
 )
 target_compile_features(utils PUBLIC cxx_std_20)
@@ -163,11 +161,18 @@ target_include_directories(components PUBLIC
 target_include_directories(chars PUBLIC 
   utils/
 )
+
+target_include_directories(utils PUBLIC 
+ ../lua-5.4.7/src
+)
+
+
 # add_subdirectory(../lua-5.4.7)
 
 target_link_libraries(components PRIVATE utils PUBLIC  ${BOOST_LIB})
 target_link_libraries(visualiser PRIVATE logic PUBLIC  ${BOOST_LIB})
 target_link_libraries(chars PRIVATE utils PUBLIC  ${BOOST_LIB})
+target_link_libraries(utils PRIVATE LuaLib PUBLIC  ${BOOST_LIB})
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE vendor utils visualiser components logic LuaLib chars PUBLIC  ${BOOST_LIB})

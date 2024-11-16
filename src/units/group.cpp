@@ -1,15 +1,27 @@
 #include "group.h"
+#include "../game_struct.h"
+#include "lua_class.h"
 
 std::unordered_map<int, std::unordered_map<ERelationType, std::unordered_set<int>>> Group::commands = {
     {0, {{ERelationType::ally, {0}}}}};
 
 std::map<CoordPair<int>, std::function<void(std::shared_ptr<CellHolder> att, std::shared_ptr<CellHolder> def)>>
     Group::relations = {
-        {{
+        {
+            
+            {
              Group::EGroupId::hero,
              Group::EGroupId::whall,
          },
-         [](std::shared_ptr<CellHolder> att, std::shared_ptr<CellHolder> def) {}},
+         [](std::shared_ptr<CellHolder> att, std::shared_ptr<CellHolder> def) {
+              auto L = gameStruct.m_luaClass->L;
+            lua_getglobal(L, "strikeWhall");
+            //auto typeLua = lua_typename(L, 0);
+            lua_call(L, 0, 0);
+            
+    }
+        
+        },
 };
 
 ERelationType Group::getRelationship(int command) {
