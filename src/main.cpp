@@ -1,150 +1,71 @@
-#include <cmath>
-
-#include <filesystem>
+﻿#include <filesystem>
+#include <iostream>
 
 #include "SDL.h"
-#include "actor/actor.h"
-#include "actor/actor_strategy_map.h"
-#include "console.h"
-#include "game_struct.h"
-#include "group.h"
-#include "headers.h"
-#include "keyboard.h"
-#include "log.h"
-#include "log_window.h"
-#include "lua_class.h"
-#include "main_window.h"
-#include "map.h"
-#include "map_generator.h"
-#include "map_window.h"
-#include "mover.h"
-#include "unit.h"
-#include "visualization_unit.h"
-#include "watching.h"
-#include "window.h"
-
-static EntityManager manager;
-
-void initMapState(MainWindow& mainWindow) {
-  gameStruct.actor->setStrategy(gameStruct.m_strategies.at(fsm_cxx::GameState::MapState).get());
-  // gameStruct.actor->setStrategy(gameStruct.m_strategies[fsm_cxx::GameState::MapState].get());
-  mainWindow.setCurrent(EMainWindows::emap);
-}
-
-void gameLoop(
-    MainWindow& mw,
-    ConsoleGame& game,
-    std::shared_ptr<IWindow> logWindow,
-    std::shared_ptr<IWindow> mapWindow,
-    float fps = 60) {
-  auto l = [&game](Text&& t, const Coord& cd) { game.DrawWords(cd.x, cd.y, t.m_text, t.m_color, t.m_bgColor); };
-
-  auto time = clock();
-  while (true) {
-    if (clock() - time > 1 / fps) {
-      mw.show(l, {0, 0});
-      game.DrawFrame(logWindow->m_rectangle, FrameType::SINGLE, Color{125, 125, 125}, Color{0, 0, 0});
-      game.DrawFrame(mapWindow->m_rectangle, FrameType::SINGLE, Color{125, 125, 125}, Color{0, 0, 0});
-
-      game.DrawBuffer();
-
-      auto act = game.getPressed();
-      if (act != EAction::none) {
-        gameStruct.keyboard->setKey(act, true);
-      }
-    }
-    time = clock();
-  }
-}
-
-std::shared_ptr<CellHolder> createWhall() {
-  Entity* whallEntity = new Entity(manager);
-  auto whall = std::make_shared<CellHolder>();
-  whallEntity->addComponent<CellHolder>(whall);
-  whallEntity->addComponent<VisualizationUnit>(
-      std::make_shared<VisualizationUnit>(Identifier{"", '#', {255, 255, 255}, {0, 0, 0}}));
-
-  whallEntity->addComponent<Group>(std::make_shared<Group>(Group::whall));
-
-  return whall;
-};
 
 int main(int argc, char** argv) {
-  auto scriptPath =  std::filesystem::path( argv[argc - 1]).parent_path().string();
-  //auto curPath = std::filesystem::current_path().string();
-
-  ConsoleGame game;
-  Color c(255, 0, 0);
-  Color cb(0, 0, 0);
-
-  Entity* player = new Entity(manager);
-
-  player->addComponent<Group>(std::make_shared<Group>(Group::hero));
-
-  player->AddComponent<IUnit>();
-  std::shared_ptr<IUnit> unit = player->GetComponent<IUnit>();
-
-  player->addComponent<VisualizationUnit>(
-      std::make_shared<VisualizationUnit>(Identifier{"", '@', {255, 255, 255}, {0, 0, 0}}));
-  unit->name = "name";
-  unit->description = "description";
-
-  auto mover = std::make_shared<SimpleMover>();
-  player->addComponent<IMover>(mover);
-
-  auto watching = std::make_shared<SimpleWatching>();
-  player->addComponent<IWatching>(watching);
-
-  SimpleMapGenerator mapGenerator;
-  std::shared_ptr<Map> m = mapGenerator.generateMap();  //(new Map({100, 100}));
-
-  LogWindow::init({{0, 43}, {80, 80}});
-
-  std::shared_ptr<LogWindow> logWindow = LogWindow::instance();
-  std::shared_ptr<MapWindow> mapWindow = std::make_shared<MapWindow>(RectangleI{{0, 5}, {80, 44}});
-  auto mo = unit->owner->GetComponent<IMover>();
-  gameStruct.hero = unit;
-
-  mo->changeMap(m);
-  mover->addSubscriber(watching);
-  mo->addSubscriber(mapWindow);
-
-  MainWindow mw(RectangleI{{0, 0}, {80, 80}});
-  mw.addWindow(EMainWindows::elog, logWindow);
-  mw.addWindow(EMainWindows::emap, mapWindow);
-
-  m->setCellHolder({2, 10}, unit);
-  mo->setCoord({2, 10});
-
-  auto mapStrategy = std::make_unique<ActorStrategyMap>();
-  mapStrategy->init(
-      [](const Coord& cd) { gameStruct.hero->owner->GetComponent<IMover>()->moveInDirection(cd); },
-      [](const Coord& cd) { gameStruct.hero->owner->GetComponent<IMover>()->moveInDirection(cd.revert()); }
-
-  );
-  gameStruct.m_strategies[fsm_cxx::GameState::MapState] = std::move(mapStrategy);
-
-  gameStruct.actor = std::make_shared<Actor>();
-  gameStruct.keyboard = std::make_shared<Keyboard>(gameStruct.actor);
-
-  initMapState(mw);
-  LOG("first coment");
-  LOG("first coment");
-  LOG("first coment");
-  LOG("first coment");
-  LOG("first coment");
-  LOG("some ", "message");
-  LOG("second ", "message");
-
-  gameStruct.m_luaClass = std::make_unique<LuaClass>();
-  gameStruct.m_luaClass->registerFunc("log", [](lua_State* L) -> int {
-    auto logString = lua_tostring(L, -1);
-    LOG(logString);
-    return 0;
-  });
-  gameStruct.m_luaClass->init(scriptPath);
-
-  gameLoop(mw, game, logWindow, mapWindow, 60);
+  // Инициализация SDL
 
   return 0;
+}
+
+void sdl_drw_line() {
+  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    std::cerr << "Ошибка инициализации SDL: " << SDL_GetError() << std::endl;
+    return;
+  }
+
+  // Создание окна
+  SDL_Window* window = SDL_CreateWindow(
+      "SDL3 Рисование Линии",  // Заголовок окна
+      800,  // Ширина окна
+      600,  // Высота окна
+      SDL_WINDOW_RESIZABLE  // Флаги окна
+  );
+
+  if (!window) {
+    std::cerr << "Ошибка создания окна: " << SDL_GetError() << std::endl;
+    SDL_Quit();
+    return;
+  }
+
+  // Создание рендерера
+  SDL_Renderer* renderer = SDL_CreateRenderer(window, nullptr);
+  if (!renderer) {
+    std::cerr << "Ошибка создания рендерера: " << SDL_GetError() << std::endl;
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return;
+  }
+
+  // Цикл обработки событий
+  bool running = true;
+  SDL_Event event;
+
+  while (running) {
+    // Обработка событий
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_EVENT_QUIT) {
+        running = false;
+      }
+    }
+
+    // Очистка экрана (заливка чёрным цветом)
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    // Установка цвета для рисования линии (белый цвет)
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+    // Рисование линии (от точки (100, 100) до точки (700, 500))
+    SDL_RenderLine(renderer, 100, 100, 700, 500);
+
+    // Отображение содержимого рендерера на экран
+    SDL_RenderPresent(renderer);
+  }
+
+  // Освобождение ресурсов
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
+  SDL_Quit();
 }

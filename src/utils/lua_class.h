@@ -24,6 +24,6 @@ class LuaClass final{
 
   void dostring(std::string_view code);
 
-  lua_State* L;
+  lua_State* L = nullptr;
 };
 

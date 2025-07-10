@@ -1,7 +1,6 @@
 
 #ifndef RANDOM_GETTER
 #define RANDOM_GETTER
-
 #include <random>
 
 template <bool is_integral, typename T> struct uniform_distribution_selector;

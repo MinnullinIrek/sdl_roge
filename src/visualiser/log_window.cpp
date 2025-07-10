@@ -1,4 +1,4 @@
-#include "log_window.h"
+﻿#include "log_window.h"
 
 #include <algorithm>
 #include <iterator>
@@ -19,18 +19,16 @@ static void split(const std::string& str, int splitLength, T&& it) {
   }
 }
 
- std::shared_ptr<LogWindow> LogWindow::inst;
- 
+std::shared_ptr<LogWindow> LogWindow::inst;
 
-LogWindow::LogWindow(const RectangleI& rect) : IWindow(rect){}
+LogWindow::LogWindow(const RectangleI& rect) : IWindow(rect) {}
 
-void LogWindow::show(const std::function<void(Text&&, const Coord&)>& visualizator, const Coord& parentCd) 
-{
+void LogWindow::show(const std::function<void(Text&&, const Coord&)>& visualizator, const Coord& parentCd) {
   const auto h = m_rectangle.height();
-  auto startI = m_text.size() > h ? m_text.size() - h : 0; 
+  auto startI = m_text.size() > h ? m_text.size() - h : 0;
   int i = 0;
-  for ( auto it = m_text.cbegin() + startI; it != m_text.cend(); ++it, ++i) {
-    visualizator(Text(*it, {125, 125, 125}, {0,0,0}), parentCd + m_rectangle.lu + Coord{0, i});
+  for (auto it = m_text.cbegin() + startI; it != m_text.cend(); ++it, ++i) {
+    visualizator(Text(*it, {125, 125, 125}, {0, 0, 0}), parentCd + m_rectangle.lu + Coord{0, i});
   }
 }
 

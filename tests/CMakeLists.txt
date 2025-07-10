@@ -8,6 +8,7 @@ target_sources(tests PRIVATE
   test_main.cpp
   test_cash.cpp
   test_map.cpp
+  test_utils.cpp
   )
 target_compile_features(tests PRIVATE cxx_std_17)
 

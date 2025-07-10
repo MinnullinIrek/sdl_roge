@@ -7,11 +7,9 @@
 // #include "units/actor.h"
 
 #include "utils/actor/actor_strategy.h"
-#include "utils/invoker.h"
 #include "utils/gamefsm.h"
+#include "utils/invoker.h"
 #include "utils/lua_class.h"
-
-
 
 class VisualEffect;
 class Visualiser;
@@ -23,7 +21,7 @@ class MapGenerator;
 class Actor;
 class GameLog;
 class LuaClass;
-    // class ActorStrategy;
+// class ActorStrategy;
 
 struct GameStruct {
   static GameStruct& instance() {
@@ -38,10 +36,10 @@ struct GameStruct {
   std::shared_ptr<MapGenerator> mapGenerator;
   std::shared_ptr<Actor> actor;
   std::shared_ptr<GameLog> gameLog;
-  std::unordered_map<fsm_cxx::GameState, std::unique_ptr<ActorStrategy>> m_strategies;
+  // std::unordered_map<fsm_cxx::GameState, std::unique_ptr<ActorStrategy>> m_strategies;
   std::unique_ptr<ActorStrategy> m_strategyFsm = nullptr;
   std::unique_ptr<LuaClass> m_luaClass;
-  fsm_cxx::machine_t<fsm_cxx::GameState>* gameFsm;
+  // fsm_cxx::machine_t<fsm_cxx::GameState>* gameFsm;
   Invoker m_invoker;
   std::shared_ptr<VisualEffect> vEffect;
 };

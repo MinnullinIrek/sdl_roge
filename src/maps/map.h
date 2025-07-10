@@ -2,12 +2,10 @@
 #define MAP_H
 
 #include <memory>
-
 #include <unordered_map>
 
 #include "coords.h"
 #include "subscriber.h"
-
 
 class Cell;
 class CellHolder;
@@ -25,14 +23,12 @@ class MapIterator {
     return *this;
   }
 
-  const std::pair<CoordPair<int>, std::shared_ptr<Cell>>& operator*() { return *cellIterator; }
+  // const std::pair<CoordPair<int>, std::shared_ptr<Cell>>& operator*() { return *cellIterator; }
   bool operator!=(const MapIterator& it) const { return cellIterator != it.cellIterator; }
 
  private:
   std::unordered_map<CoordPair<int>, std::shared_ptr<Cell>>::iterator cellIterator;
 };
-
-
 
 class Map : public Publisher {
  public:

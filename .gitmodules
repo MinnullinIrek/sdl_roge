@@ -10,3 +10,9 @@
 [submodule "src/utils/CppConsoleGameLibrary"]
 	path = src/utils/CppConsoleGameLibrary
 	url = https://git.homegu.com/DavDag/CppConsoleGameLibrary.git
+[submodule "SimpleUnoptimizedFsm"]
+	path = SimpleUnoptimizedFsm
+	url = https://github.com/MinnullinIrek/SimpleUnoptimizedFsm.git
+[submodule "SDL_ttf"]
+	path = SDL_ttf
+	url = https://github.com/libsdl-org/SDL_ttf.git
