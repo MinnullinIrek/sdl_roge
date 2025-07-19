@@ -108,7 +108,7 @@
 #endif /* SDL_VIDEO_DRIVER_RPI */
 
 #if defined(SDL_VIDEO_OPENGL) && !defined(SDL_VIDEO_VITA_PVR_OGL)
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 #endif
 
 /** If we happen to not have this defined because of an older EGL version, just define it 0x0

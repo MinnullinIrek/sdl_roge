@@ -14,7 +14,7 @@
 
 #ifdef TEST_NATIVE_WAYLAND
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 #include <wayland-client.h>
 #include <xdg-shell-client-protocol.h>
 

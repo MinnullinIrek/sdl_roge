@@ -7,9 +7,9 @@
 #include <build_config/SDL_build_config.h>
 #endif
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_intrin.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_intrin.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "testautomation_suites.h"
 
 // FIXME: missing tests for loongarch lsx/lasx

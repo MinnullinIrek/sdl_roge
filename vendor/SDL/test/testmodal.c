@@ -11,9 +11,9 @@
 */
 /* Sample program:  Create a parent window and a modal child window. */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[])

@@ -26,7 +26,7 @@
  Rewritten for test lib by Andreas Schiffler.
 
 */
-#include <SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #define FILENAME_SIZE 128
 

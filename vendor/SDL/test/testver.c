@@ -13,9 +13,9 @@
 /* Test program to compare the compile-time version of SDL with the linked
    version of SDL
 */
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_revision.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_revision.h>
 
 int main(int argc, char *argv[])
 {

@@ -2,8 +2,8 @@
  * Joystick test suite
  */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "../src/joystick/usb_ids.h"
 #include "testautomation_suites.h"
 

@@ -11,9 +11,9 @@
 */
 /* Sample program:  Create open and save dialogs. */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 const SDL_DialogFileFilter filters[3] = {
     { "All files", "*" },

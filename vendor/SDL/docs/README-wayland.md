@@ -120,7 +120,7 @@ and the following is a minimal example of interoperation with Qt 6, with Qt owni
 #include <QWindow>
 #include <qpa/qplatformnativeinterface.h>
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 
 int main(int argc, char *argv[])
 {

@@ -11,9 +11,9 @@
 */
 /* Simple test of filesystem functions. */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 static int SDLCALL enum_callback(void *userdata, const char *origdir, const char *fname)
 {

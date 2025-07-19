@@ -32,7 +32,7 @@
 #ifndef SDL_test_common_h_
 #define SDL_test_common_h_
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 
 #ifdef SDL_PLATFORM_PSP
 #define DEFAULT_WINDOW_WIDTH  480
@@ -135,7 +135,7 @@ typedef struct
 
 } SDLTest_CommonState;
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -258,6 +258,6 @@ void SDLTest_CommonDrawWindowInfo(SDL_Renderer *renderer, SDL_Window *window, fl
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_test_common_h_ */

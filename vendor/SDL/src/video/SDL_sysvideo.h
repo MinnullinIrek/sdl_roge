@@ -23,7 +23,7 @@
 #ifndef SDL_sysvideo_h_
 #define SDL_sysvideo_h_
 
-#include <SDL3/SDL_vulkan.h>
+#include <../vendor/SDL/include/SDL3/SDL_vulkan.h>
 
 /* The SDL video driver */
 

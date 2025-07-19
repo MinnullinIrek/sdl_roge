@@ -1,6 +1,6 @@
 #define SDL_MAIN_HANDLED
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 int main(int argc, char *argv[])
 {

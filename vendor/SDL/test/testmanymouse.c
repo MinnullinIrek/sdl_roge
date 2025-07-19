@@ -10,8 +10,8 @@
   freely.
 */
 
-#include <SDL3/SDL_test_common.h>
-#include <SDL3/SDL_main.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 /* Stolen from the mailing list */
 /* Creates a new mouse cursor from an XPM */

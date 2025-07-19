@@ -10,9 +10,9 @@
   freely.
 */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 static void log_usage(char *progname, SDLTest_CommonState *state) {
     static const char *options[] = { "in.wav", "out.wav", "newfreq", "newchan", NULL };

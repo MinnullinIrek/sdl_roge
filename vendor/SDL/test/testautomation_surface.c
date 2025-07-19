@@ -17,8 +17,8 @@
 #endif
 #include <sys/stat.h>
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "testautomation_suites.h"
 #include "testautomation_images.h"
 

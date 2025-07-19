@@ -28,9 +28,9 @@
 #ifndef SDL_bits_h_
 #define SDL_bits_h_
 
-#include <SDL3/SDL_stdinc.h>
+#include "../vendor/SDL/include/SDL3/SDL_stdinc.h"
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -147,6 +147,6 @@ SDL_FORCE_INLINE SDL_bool SDL_HasExactlyOneBitSet32(Uint32 x)
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_bits_h_ */

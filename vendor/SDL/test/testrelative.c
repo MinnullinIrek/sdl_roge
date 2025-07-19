@@ -12,9 +12,9 @@
 
 /* Simple program:  Test relative mouse motion */
 
-#include <SDL3/SDL_test.h>
-#include <SDL3/SDL_test_common.h>
-#include <SDL3/SDL_main.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 #ifdef SDL_PLATFORM_EMSCRIPTEN
 #include <emscripten/emscripten.h>

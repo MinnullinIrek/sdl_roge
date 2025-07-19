@@ -10,7 +10,7 @@
   freely.
 */
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 
 #include "testyuv_cvt.h"
 

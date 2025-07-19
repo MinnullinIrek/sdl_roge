@@ -22,7 +22,7 @@
 
 #if SDL_VIDEO_RENDER_OGL
 
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 #include "SDL_shaders_gl.h"
 
 /* OpenGL shader implementation */

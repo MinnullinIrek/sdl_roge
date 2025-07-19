@@ -26,7 +26,7 @@
 #include "../SDL_sysvideo.h"
 
 /* Set up definitions for Vivante EGL */
-#include <SDL3/SDL_egl.h>
+#include <../vendor/SDL/include/SDL3/SDL_egl.h>
 
 #ifdef SDL_VIDEO_DRIVER_VIVANTE_VDK
 #include <gc_vdk.h>

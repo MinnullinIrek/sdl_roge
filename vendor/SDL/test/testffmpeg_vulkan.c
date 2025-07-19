@@ -9,8 +9,8 @@
   including commercial applications, and to alter it and redistribute it
   freely.
 */
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_vulkan.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_vulkan.h>
 
 #include "testffmpeg_vulkan.h"
 

@@ -24,7 +24,7 @@
 #define SDL_x11opengl_h_
 
 #ifdef SDL_VIDEO_OPENGL_GLX
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 #include <GL/glx.h>
 
 typedef void (*__GLXextFuncPtr)(void);

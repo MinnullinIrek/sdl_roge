@@ -36,9 +36,9 @@
 #ifndef SDL_test_compare_h_
 #define SDL_test_compare_h_
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -73,6 +73,6 @@ extern int SDLTest_CompareMemory(const void *actual, size_t size_actual, const v
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_test_compare_h_ */

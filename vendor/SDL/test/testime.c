@@ -13,14 +13,14 @@
    If you build without SDL_ttf, you can use the GNU Unifont hex file instead.
    Download at http://unifoundry.com/unifont.html */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test_font.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test_font.h>
 #ifdef HAVE_SDL_TTF
 #include "SDL_ttf.h"
 #endif
 
-#include <SDL3/SDL_test_common.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
 #include "testutils.h"
 
 #ifdef HAVE_SDL_TTF

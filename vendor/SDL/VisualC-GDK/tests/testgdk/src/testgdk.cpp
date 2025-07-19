@@ -18,10 +18,10 @@
 #include <stdio.h>
 #include <time.h>
 
-#include <SDL3/SDL_test.h>
-#include <SDL3/SDL_test_common.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
 #include "../src/core/windows/SDL_windows.h"
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 extern "C" {
 #include "../test/testutils.h"

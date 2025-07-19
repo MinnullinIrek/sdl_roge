@@ -37,16 +37,16 @@
 #include "../render/SDL_sysrender.h"
 
 #ifdef SDL_VIDEO_OPENGL
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 #endif /* SDL_VIDEO_OPENGL */
 
 #if defined(SDL_VIDEO_OPENGL_ES) && !defined(SDL_VIDEO_OPENGL)
-#include <SDL3/SDL_opengles.h>
+#include <../vendor/SDL/include/SDL3/SDL_opengles.h>
 #endif /* SDL_VIDEO_OPENGL_ES && !SDL_VIDEO_OPENGL */
 
 /* GL and GLES2 headers conflict on Linux 32 bits */
 #if defined(SDL_VIDEO_OPENGL_ES2) && !defined(SDL_VIDEO_OPENGL)
-#include <SDL3/SDL_opengles2.h>
+#include <../vendor/SDL/include/SDL3/SDL_opengles2.h>
 #endif /* SDL_VIDEO_OPENGL_ES2 && !SDL_VIDEO_OPENGL */
 
 #ifndef SDL_VIDEO_OPENGL

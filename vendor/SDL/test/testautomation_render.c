@@ -2,8 +2,8 @@
  * Original code: automated SDL platform test written by Edgar Simo "bobbens"
  * Extended and extensively updated by aschiffler at ferzkopp dot net
  */
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "testautomation_images.h"
 #include "testautomation_suites.h"
 

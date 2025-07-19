@@ -35,7 +35,7 @@ your code worked everywhere without changes.
 Previous versions of SDL had a static library, SDLmain, that you would link
 your app against. SDL3 still has the same macro tricks, but the static library
 is gone. Now it's supplied by a "single-header library," which means you
-`#include <SDL3/SDL_main.h>` and that header will insert a small amount of
+`#include "../vendor/SDL/include/SDL3/SDL_main.h"` and that header will insert a small amount of
 code into the source file that included it, so you no longer have to worry
 about linking against an extra library that you might need on some platforms.
 You just build your app and it works.
@@ -127,7 +127,7 @@ from a single source file in your project:
 
 ```c
 #define SDL_MAIN_USE_CALLBACKS
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 ```
 
 Once you do this, you do not write a "main" function at all (and if you do,

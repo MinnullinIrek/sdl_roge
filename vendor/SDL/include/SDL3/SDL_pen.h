@@ -39,7 +39,7 @@
 #ifndef SDL_pen_h_
 #define SDL_pen_h_
 
-#include <SDL3/SDL_error.h>
+#include <../vendor/SDL/include/SDL3/SDL_error.h>
 
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus

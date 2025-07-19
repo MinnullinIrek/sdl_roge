@@ -14,9 +14,9 @@
    Also exercises the system's signal/thread interaction
 */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 static SDL_RWLock *rwlock = NULL;
 static SDL_ThreadID mainthread;

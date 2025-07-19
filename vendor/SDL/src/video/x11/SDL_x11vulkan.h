@@ -23,7 +23,7 @@
 #ifndef SDL_x11vulkan_h_
 #define SDL_x11vulkan_h_
 
-#include <SDL3/SDL_vulkan.h>
+#include <../vendor/SDL/include/SDL3/SDL_vulkan.h>
 
 #if defined(SDL_VIDEO_VULKAN) && defined(SDL_VIDEO_DRIVER_X11)
 

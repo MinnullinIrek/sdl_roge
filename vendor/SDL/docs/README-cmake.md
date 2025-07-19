@@ -376,7 +376,7 @@ file(WRITE main.c [===========================================[
 
 /* START of source modifications */
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 /*
  * SDL3/SDL_main.h is explicitly not included such that a terminal window would appear on Windows.
  */

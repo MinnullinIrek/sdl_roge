@@ -35,11 +35,11 @@
 #ifndef SDL_iostream_h_
 #define SDL_iostream_h_
 
-#include <SDL3/SDL_stdinc.h>
-#include <SDL3/SDL_error.h>
-#include <SDL3/SDL_properties.h>
+#include "../vendor/SDL/include/SDL3/SDL_stdinc.h"
+#include <../vendor/SDL/include/SDL3/SDL_error.h>
+#include <../vendor/SDL/include/SDL3/SDL_properties.h>
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -1065,6 +1065,6 @@ extern SDL_DECLSPEC SDL_bool SDLCALL SDL_WriteS64BE(SDL_IOStream *dst, Sint64 va
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_iostream_h_ */

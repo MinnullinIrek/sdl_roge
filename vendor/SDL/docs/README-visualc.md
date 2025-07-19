@@ -76,8 +76,8 @@ and type the names of the libraries to link with in the "Additional Options:" bo
 Here's a sample SDL snippet to verify everything is setup in your IDE:
 
 ```
-    #include <SDL3/SDL.h>
-    #include <SDL3/SDL_main.h> // only include this one in the source file with main()!
+    #include "../vendor/SDL/include/SDL3/SDL.h"
+    #include "../vendor/SDL/include/SDL3/SDL_main.h" // only include this one in the source file with main()!
 
     int main( int argc, char* argv[] )
     {

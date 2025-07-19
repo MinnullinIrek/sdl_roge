@@ -11,9 +11,9 @@
 */
 /* This is a simple example of using GLSL shaders with SDL */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #include "testutils.h"
 
@@ -21,7 +21,7 @@
 
 #ifdef HAVE_OPENGL
 
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 
 static SDL_bool shaders_supported;
 static int current_shader = 0;

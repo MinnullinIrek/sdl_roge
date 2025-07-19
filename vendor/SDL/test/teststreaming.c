@@ -15,9 +15,9 @@
  *                                                                              *
  ********************************************************************************/
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "testutils.h"
 
 #ifdef SDL_PLATFORM_EMSCRIPTEN

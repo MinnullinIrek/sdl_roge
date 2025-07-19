@@ -12,10 +12,10 @@
 
 /* Simple program to test the SDL controller routines */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
-#include <SDL3/SDL_test_font.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_font.h>
 
 #ifdef SDL_PLATFORM_EMSCRIPTEN
 #include <emscripten/emscripten.h>

@@ -22,7 +22,7 @@
 
 #if SDL_VIDEO_RENDER_D3D12 && defined(SDL_PLATFORM_XBOXSERIES)
 
-#include <SDL3/SDL_stdinc.h>
+#include "../vendor/SDL/include/SDL3/SDL_stdinc.h"
 
 #include "../../core/windows/SDL_windows.h"
 #include "../../video/directx/SDL_d3d12.h"

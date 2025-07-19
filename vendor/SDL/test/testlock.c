@@ -17,9 +17,9 @@
 #include <signal.h>
 #include <stdlib.h> /* for atexit() */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 static SDL_Mutex *mutex = NULL;
 static SDL_ThreadID mainthread;

@@ -14,7 +14,7 @@
 /* Hack #1: avoid inclusion of SDL_main.h by SDL_internal.h */
 #define SDL_main_h_
 
-/* Hack #2: avoid dynapi renaming (must be done before #include <SDL3/SDL.h>) */
+/* Hack #2: avoid dynapi renaming (must be done before #include "../vendor/SDL/include/SDL3/SDL.h") */
 #include "../src/dynapi/SDL_dynapi.h"
 #ifdef SDL_DYNAMIC_API
 #undef SDL_DYNAMIC_API
@@ -33,9 +33,9 @@
 #undef SDL_MAIN_NOIMPL
 #endif
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #include <stdio.h>
 #include <string.h>

@@ -23,7 +23,7 @@
 #ifndef SDL_cocoavideo_h_
 #define SDL_cocoavideo_h_
 
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 
 #include <ApplicationServices/ApplicationServices.h>
 #include <IOKit/pwr_mgt/IOPMLib.h>

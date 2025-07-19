@@ -18,9 +18,9 @@
 #include <stdlib.h>
 
 #define SDL_MAIN_USE_CALLBACKS 1
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "testutils.h"
 
 static struct

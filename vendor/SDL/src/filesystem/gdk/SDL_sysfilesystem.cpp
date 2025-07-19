@@ -28,9 +28,9 @@ extern "C" {
 }
 
 #include "../../core/windows/SDL_windows.h"
-#include <SDL3/SDL_hints.h>
-#include <SDL3/SDL_system.h>
-#include <SDL3/SDL_filesystem.h>
+#include <../vendor/SDL/include/SDL3/SDL_hints.h>
+#include <../vendor/SDL/include/SDL3/SDL_system.h>
+#include <../vendor/SDL/include/SDL3/SDL_filesystem.h>
 #include <XGameSaveFiles.h>
 
 char *

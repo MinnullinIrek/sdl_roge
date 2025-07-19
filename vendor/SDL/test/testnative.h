@@ -14,7 +14,7 @@
    integration with native windows
 */
 
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 
 #include "build_config/SDL_build_config.h"
 

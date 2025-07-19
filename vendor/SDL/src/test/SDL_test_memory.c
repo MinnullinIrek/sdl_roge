@@ -18,7 +18,7 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 */
-#include <SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #ifdef HAVE_LIBUNWIND_H
 #define UNW_LOCAL_ONLY

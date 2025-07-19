@@ -29,7 +29,7 @@
 #define SDL_build_config_h_
 
 /* General platform specific identifiers */
-#include <SDL3/SDL_platform_defines.h>
+#include <../vendor/SDL/include/SDL3/SDL_platform_defines.h>
 
 /* C datatypes */
 /* Define SIZEOF_VOIDP for 64/32 architectures */

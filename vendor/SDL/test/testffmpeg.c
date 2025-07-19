@@ -14,9 +14,9 @@
  * For a more complete video example, see ffplay.c in the ffmpeg sources.
  */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
@@ -26,9 +26,9 @@
 #include <libswscale/swscale.h>
 
 #ifdef HAVE_EGL
-#include <SDL3/SDL_egl.h>
-#include <SDL3/SDL_opengl.h>
-#include <SDL3/SDL_opengles2.h>
+#include <../vendor/SDL/include/SDL3/SDL_egl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
+#include <../vendor/SDL/include/SDL3/SDL_opengles2.h>
 
 #include <libavutil/hwcontext_drm.h>
 

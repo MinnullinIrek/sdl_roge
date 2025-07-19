@@ -28,14 +28,14 @@
 #ifndef SDL_video_h_
 #define SDL_video_h_
 
-#include <SDL3/SDL_stdinc.h>
-#include <SDL3/SDL_error.h>
-#include <SDL3/SDL_pixels.h>
-#include <SDL3/SDL_properties.h>
-#include <SDL3/SDL_rect.h>
-#include <SDL3/SDL_surface.h>
+#include "../vendor/SDL/include/SDL3/SDL_stdinc.h"
+#include <../vendor/SDL/include/SDL3/SDL_error.h>
+#include <../vendor/SDL/include/SDL3/SDL_pixels.h>
+#include <../vendor/SDL/include/SDL3/SDL_properties.h>
+#include <../vendor/SDL/include/SDL3/SDL_rect.h>
+#include <../vendor/SDL/include/SDL3/SDL_surface.h>
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -2838,6 +2838,6 @@ extern SDL_DECLSPEC int SDLCALL SDL_GL_DestroyContext(SDL_GLContext context);
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_video_h_ */

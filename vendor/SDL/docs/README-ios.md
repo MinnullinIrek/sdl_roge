@@ -22,7 +22,7 @@ Using the Simple DirectMedia Layer for iOS
 5. Select the project in the main view, go to the "Build Settings" tab, select "All", and edit "Header Search Path" and drag over the SDL "Public Headers" folder from the left
 6. Select the project in the main view, go to the "Build Phases" tab, select "Link Binary With Libraries", and add SDL3.framework from "Framework-iOS"
 7. Select the project in the main view, go to the "General" tab, scroll down to "Frameworks, Libraries, and Embedded Content", and select "Embed & Sign" for the SDL library.
-8. Add the source files that you would normally have for an SDL program, making sure to have #include <SDL3/SDL_main.h> at the top of the file containing your main() function.
+8. Add the source files that you would normally have for an SDL program, making sure to have #include "../vendor/SDL/include/SDL3/SDL_main.h" at the top of the file containing your main() function.
 9. Add any assets that your application needs.
 10. Enjoy!
 
@@ -182,7 +182,7 @@ This target requires Xcode 11 or later. The target will simply fail to build if 
 
 In addition, on Apple platforms, main() cannot be in a dynamically loaded library.
 However, unlike in SDL2, in SDL3 SDL_main is implemented inline in SDL_main.h, so you don't need to link against a static libSDL3main.lib, and you don't need to copy a .c file from the SDL3 source either.
-This means that iOS apps which used the statically-linked libSDL3.lib and now link with the xcframwork can just `#include <SDL3/SDL_main.h>` in the source file that contains their standard `int main(int argc; char *argv[])` function to get a header-only SDL_main implementation that calls the `SDL_RunApp()` with your standard main function.
+This means that iOS apps which used the statically-linked libSDL3.lib and now link with the xcframwork can just `#include "../vendor/SDL/include/SDL3/SDL_main.h"` in the source file that contains their standard `int main(int argc; char *argv[])` function to get a header-only SDL_main implementation that calls the `SDL_RunApp()` with your standard main function.
 
 Using an xcFramework is similar to using a regular framework. However, issues have been seen with the build system not seeing the headers in the xcFramework. To remedy this, add the path to the xcFramework in your app's target ==> Build Settings ==> Framework Search Paths and mark it recursive (this is critical). Also critical is to remove "*.framework" from Build Settings ==> Sub-Directories to Exclude in Recursive Searches. Clean the build folder, and on your next build the build system should be able to see any of these in your code, as expected:
 

@@ -22,7 +22,7 @@
 
 #if SDL_VIDEO_RENDER_OGL
 #include "../../video/SDL_sysvideo.h" /* For SDL_RecreateWindow */
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 #include "../SDL_sysrender.h"
 #include "SDL_shaders_gl.h"
 #include "../../video/SDL_pixels_c.h"

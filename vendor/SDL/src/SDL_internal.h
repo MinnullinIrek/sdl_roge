@@ -273,11 +273,11 @@
 #define SDL_EndThreadFunction NULL
 #endif
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_intrin.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_intrin.h>
 
 #define SDL_MAIN_NOIMPL /* don't drag in header-only implementation of SDL_main */
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus

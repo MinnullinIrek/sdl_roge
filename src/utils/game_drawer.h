@@ -1,26 +1,27 @@
-#pragma once
+﻿#pragma once
 #ifndef CONSOLE_3_H
 #define CONSOLE_3_H
 //
+#include <assert.h>
+
 #include <string_view>
 #include <unordered_map>
 #include <vector>
-#include <assert.h>
 
 #include "console_windows.h"
+#include "coords.h"
 #include "headers.h"
 #include "templateCash.hpp"
-#include "coords.h"
 
-class ConsoleGame 
-{
+class GameDrawer {
   ConsoleWindows window;
   TemplateCash<uint64_t, WORD> cash;
+
  public:
-  ConsoleGame();
+  GameDrawer();
   template <typename Color>
   void fill(float x, float y, char ch, Color&& color, Color&& bgColor) {
-     window.fillCell(
+    window.fillCell(
         static_cast<short>(x),
         static_cast<short>(y),
         ch,
@@ -29,8 +30,8 @@ class ConsoleGame
   void DrawBuffer();
   void DrawBufferRegion(short x, short y, short columns, short rows);
   void FillBuffer(CHAR c, WORD attr);
- /* bool IsKeyDown(int key);
-  bool IsKeyPressed(int key);*/
+  /* bool IsKeyDown(int key);
+   bool IsKeyPressed(int key);*/
   template <typename Color>
   void DrawFrame(const RectangleI& rect, FrameType type, Color&& color, Color&& bgColor) {
     window.drawFrame(
@@ -38,12 +39,17 @@ class ConsoleGame
         (int)rect.lu.y,
         (int)rect.width(),
         (int)rect.height(),
-        type, 
+        type,
         colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
   }
   template <typename Color>
   void DrawWords(float x, float y, const std::string& text, Color&& color, Color&& bgColor) {
-    window.drawWords((int)x, (int)y, text.c_str(), text.size(), colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
+    window.drawWords(
+        (int)x,
+        (int)y,
+        text.c_str(),
+        text.size(),
+        colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
   }
 
   template <typename Color>
@@ -51,12 +57,8 @@ class ConsoleGame
     assert(r.height() >= 0);
     auto t = text.substr(0, r.width());
     for (int y = r.lu.y; y <= r.rd.y && !t.empty(); ++y) {
-    window.drawWords(
-        r.lu.x,
-        r.lu.y,
-        t.c_str(),
-        r.width(),
-        colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
+      window.drawWords(
+          r.lu.x, r.lu.y, t.c_str(), r.width(), colorToAttr(std::forward<Color>(color), std::forward<Color>(bgColor)));
     }
   }
 
@@ -73,41 +75,41 @@ class ConsoleGame
   WORD colorToAttr(Color&& color) {
     if (cash.exists(RGBToHex(color))) {
       return cash.get(RGBToHex(color));
-    } 
-    
+    }
+
     WORD col = F_BLACK;
     if (color.r >= 75 && color.g >= 75 && color.b >= 75) {
-        col = F_GREY;
+      col = F_GREY;
     }
     if (color.r > 150 && color.g > 150 && color.b >= 150) {
-        col = F_WHITE;
+      col = F_WHITE;
     }
     if (color.r > 200 && color.g > 200 && color.b >= 200) {
-        col = F_BRIGTHWHITE;
+      col = F_BRIGTHWHITE;
     }
 
     if (color.b - color.r > 50 && color.b - color.g > 50) {
-        if (color.b > 125) {
+      if (color.b > 125) {
         col = F_LIGHTBLUE;
-        } else {
+      } else {
         col = F_BLUE;
-        }
+      }
     }
 
     if (color.b - color.r > 50 && color.b - color.g > 50) {
-        if (color.b > 125) {
+      if (color.b > 125) {
         col = F_LIGHTBLUE;
-        } else {
+      } else {
         col = F_BLUE;
-        }
+      }
     }
 
     if (color.g - color.b > 50 && color.g - color.r > 50) {
-        if (color.g > 125) {
+      if (color.g > 125) {
         col = F_LIGHTGREEN;
-        } else {
+      } else {
         col = F_GREEN;
-        }
+      }
     }
 
     if (color.r - color.b > 50 && color.r - color.g > 50) {
@@ -119,27 +121,27 @@ class ConsoleGame
     }
 
     if (color.g - color.b < 0 && color.g - color.r < 0) {
-        if (color.r > 125) {
+      if (color.r > 125) {
         col = F_LIGHTPURPLE;
-        } else {
+      } else {
         col = F_PURPLE;
-        }
+      }
     }
 
     if (color.r - color.b < 0 && color.r - color.g < 0) {
-        if (color.g > 125) {
+      if (color.g > 125) {
         col = F_LIGHTAQUA;
-        } else {
+      } else {
         col = F_AQUA;
-        }
+      }
     }
 
     if (color.b - color.r < 0 && color.b - color.g < 0) {
-        if (color.g > 125) {
+      if (color.g > 125) {
         col = F_LIGHTYELLOW;
-        } else {
+      } else {
         col = F_YELLOW;
-        }
+      }
     }
     cash.put(RGBToHex(color), col);
     return col;
@@ -150,12 +152,11 @@ class ConsoleGame
     return colorToAttr(std::forward<Color>(color)) | (colorToAttr(std::forward<Color>(bgColor)) >> 4);
   }
 
-  uint64_t RGBToHex(const Color& color) {    
-      return (((uint64_t)color.r & 0xff) << 16) + (((uint64_t)color.g & 0xff) << 8) + ((uint64_t)color.b & 0xff); 
+  uint64_t RGBToHex(const Color& color) {
+    return (((uint64_t)color.r & 0xff) << 16) + (((uint64_t)color.g & 0xff) << 8) + ((uint64_t)color.b & 0xff);
   }
 
   std::unordered_map<EAction, int> m_actionKey;
-
 };
 
 #endif  // !CONSOLE_H

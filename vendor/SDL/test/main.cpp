@@ -6,6 +6,6 @@
  * Placed in the public domain by Daniel Gibson, 2022-12-12
  */
 
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 // that's all, folks!

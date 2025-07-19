@@ -12,8 +12,8 @@
 
 /* Simple program:  draw as many random objects on the screen as possible */
 
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test_common.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
 
 #ifdef SDL_PLATFORM_EMSCRIPTEN
 #include <emscripten/emscripten.h>

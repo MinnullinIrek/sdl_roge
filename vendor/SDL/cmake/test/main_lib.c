@@ -1,6 +1,6 @@
-#include <SDL3/SDL.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
 #define SDL_MAIN_HANDLED /* don't drag in header-only SDL_main implementation */
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 #include EXPORT_HEADER
 

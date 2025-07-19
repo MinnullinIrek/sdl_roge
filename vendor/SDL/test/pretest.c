@@ -16,8 +16,8 @@
  * Internally, this functions calls Shell32.SHGetFolderPathW.
  */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 int main(int argc, char *argv[])
 {

@@ -11,8 +11,8 @@
 */
 #include <stdlib.h>
 
-#include <SDL3/SDL_test_common.h>
-#include <SDL3/SDL_main.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 #if defined(SDL_PLATFORM_ANDROID) && defined(__ARM_EABI__) && !defined(__ARM_ARCH_7A__)
 
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 /* SDL includes a copy for building on systems without the Vulkan SDK */
 #include "../src/video/khronos/vulkan/vulkan.h"
 #endif
-#include <SDL3/SDL_vulkan.h>
+#include <../vendor/SDL/include/SDL3/SDL_vulkan.h>
 
 #ifndef UINT64_MAX /* VS2008 */
 #define UINT64_MAX 18446744073709551615

@@ -3,8 +3,8 @@
  * New/updated tests: aschiffler at ferzkopp dot net
  */
 #include <limits.h>
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 #include "testautomation_suites.h"
 
 /* ================= Test Case Implementation ================== */

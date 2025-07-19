@@ -28,7 +28,7 @@
 /* WGL implementation of SDL OpenGL support */
 
 #ifdef SDL_VIDEO_OPENGL_WGL
-#include <SDL3/SDL_opengl.h>
+#include "../vendor/SDL/include/SDL3/SDL_opengl.h"
 
 #define DEFAULT_OPENGL "OPENGL32.DLL"
 

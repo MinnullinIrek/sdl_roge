@@ -11,8 +11,8 @@
 */
 /* Simple program:  Move N sprites around on the screen as fast as possible */
 
-#include <SDL3/SDL_test_common.h>
-#include <SDL3/SDL_main.h>
+#include <../vendor/SDL/include/SDL3/SDL_test_common.h>
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 #include "testutils.h"
 
 #ifdef SDL_PLATFORM_EMSCRIPTEN

@@ -11,9 +11,9 @@
 */
 
 /* Test program to verify the SDL date/time APIs */
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #define CAL_Y_OFF   100.0f
 #define CAL_X_OFF   19.0f

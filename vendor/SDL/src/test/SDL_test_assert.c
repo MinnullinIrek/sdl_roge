@@ -24,7 +24,7 @@
  Used by the test framework and test cases.
 
 */
-#include <SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 /* Enable to have color in logs */
 #if 1

@@ -239,7 +239,7 @@ To include these files for C/C++ projects:
      use that file.
    - If your standard main() function is implemented in a **plain C** source file,
      create an empty .cpp source file (e.g. `main.cpp`) that only contains the line
-     `#include <SDL3/SDL_main.h>` and use that file instead.
+     `#include "../vendor/SDL/include/SDL3/SDL_main.h"` and use that file instead.
 4. Right click on the C++ source file from step 3 (as listed in your project),
    then click on "Properties...".
 5. in the drop-down box next to "Configuration", choose, "All Configurations"
@@ -288,8 +288,8 @@ your project, and open the file in Visual C++'s text editor.
 7. Copy and paste the following code into the new file, then save it.
 
 ```c
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 int main(int argc, char **argv)
 {

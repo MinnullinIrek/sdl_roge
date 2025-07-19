@@ -1,15 +1,12 @@
-#pragma once
+﻿#pragma once
 #ifndef HEADERS_H
 #define HEADERS_S
 
 #include <cstdint>
 #include <string>
 
-
-enum class ERelationType {none, whall, neutral, enemy, ally, compnion};
+enum class ERelationType { none, whall, neutral, enemy, ally, compnion };
 enum class EAction { none, left, right, up, down, inventory, map, undo, charAction, effect };
-
-
 
 using TranslatableText = std::string;
 using Description = std::string;
@@ -22,8 +19,8 @@ struct Name {
 };
 
 struct Color {
-  Color(uint8_t r = 0, uint8_t g = 0, uint8_t b = 0) : r(r), g(g), b(b) {}
-  uint8_t r, g, b;
+  Color(uint8_t r = 0, uint8_t g = 0, uint8_t b = 0, uint8_t a = 255) : r(r), g(g), b(b), a(a) {}
+  uint8_t r, g, b, a;
   bool operator==(const Color& c) const { return c.r == r && c.b == b && c.g == g; }
   static Color white;
   static Color black;

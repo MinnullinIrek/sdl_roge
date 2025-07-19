@@ -33,10 +33,10 @@
 #ifndef SDL_camera_h_
 #define SDL_camera_h_
 
-#include <SDL3/SDL_error.h>
-#include <SDL3/SDL_video.h>
+#include <../vendor/SDL/include/SDL3/SDL_error.h>
+#include <../vendor/SDL/include/SDL3/SDL_video.h>
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -477,6 +477,6 @@ extern SDL_DECLSPEC void SDLCALL SDL_CloseCamera(SDL_Camera *camera);
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_camera_h_ */

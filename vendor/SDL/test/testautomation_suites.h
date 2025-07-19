@@ -6,7 +6,7 @@
 #ifndef _testsuites_h
 #define _testsuites_h
 
-#include <SDL3/SDL_test.h>
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 #define ISFINITE(X) isfinite((float)(X))
 #define ISINF(X)    isinf((float)(X))

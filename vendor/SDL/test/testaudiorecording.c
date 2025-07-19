@@ -11,9 +11,9 @@
 */
 
 #define SDL_MAIN_USE_CALLBACKS 1
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_test.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
+#include <../vendor/SDL/include/SDL3/SDL_test.h>
 
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;

@@ -13,7 +13,7 @@ rename_symbols.py --all-symbols source_code_path
 
 It's also possible to apply a semantic patch to migrate more easily to SDL3: [SDL_migration.cocci](https://github.com/libsdl-org/SDL/blob/main/build-scripts/SDL_migration.cocci)
 
-SDL headers should now be included as `#include <SDL3/SDL.h>`. Typically that's the only SDL header you'll need in your application unless you are using OpenGL or Vulkan functionality. SDL_image, SDL_mixer, SDL_net, SDL_ttf and SDL_rtf have also their preferred include path changed: for SDL_image, it becomes `#include <SDL3_image/SDL_image.h>`. We have provided a handy Python script [rename_headers.py](https://github.com/libsdl-org/SDL/blob/main/build-scripts/rename_headers.py) to rename SDL2 headers to their SDL3 counterparts:
+SDL headers should now be included as `#include "../vendor/SDL/include/SDL3/SDL.h"`. Typically that's the only SDL header you'll need in your application unless you are using OpenGL or Vulkan functionality. SDL_image, SDL_mixer, SDL_net, SDL_ttf and SDL_rtf have also their preferred include path changed: for SDL_image, it becomes `#include <../vendor/SDL/include/SDL3_image/SDL_image.h>`. We have provided a handy Python script [rename_headers.py](https://github.com/libsdl-org/SDL/blob/main/build-scripts/rename_headers.py) to rename SDL2 headers to their SDL3 counterparts:
 ```sh
 rename_headers.py source_code_path
 ```
@@ -1078,7 +1078,7 @@ The following functions have been renamed:
 SDL3 doesn't have a static libSDLmain to link against anymore.
 Instead SDL_main.h is now a header-only library **and not included by SDL.h anymore**.
 
-Using it is really simple: Just `#include <SDL3/SDL_main.h>` in the source file with your standard
+Using it is really simple: Just `#include "../vendor/SDL/include/SDL3/SDL_main.h"` in the source file with your standard
 `int main(int argc, char* argv[])` function. See docs/README-main-functions.md for details.
 
 Several platform-specific entry point functions have been removed as unnecessary. If for some reason you explicitly need them, here are easy replacements:

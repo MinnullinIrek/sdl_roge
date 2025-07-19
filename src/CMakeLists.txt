@@ -11,6 +11,12 @@ target_sources(${PROJECT_NAME} PRIVATE
   renderer.h
   renderer.cpp
   game_struct.h
+  sdl_port.h
+  sdl_port.cpp
+  event_sdl_port.h
+  event_sdl_port.cpp
+  abstract_port.h
+  abstract_event_port.h
   
   )
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
@@ -25,11 +31,9 @@ add_library(utils
   utils/random.h
   utils/subscriber.h
   utils/subscriber.cpp
-  utils/console.cpp
-  utils/console.h
+  utils/game_drawer.cpp
+  utils/game_drawer.h
   utils/templateCash.hpp
-  utils/console.cpp
-  utils/console.h
   utils/keyboard.h
   utils/keyboard.cpp
   utils/console_windows.h
@@ -57,6 +61,8 @@ add_library(utils
   utils/actor/actor_strategy_inventory.cpp
   utils/actor/actor_strategy_map.h
   utils/actor/actor_strategy_map.cpp
+
+  
 
 )
 target_compile_features(utils PUBLIC cxx_std_20)
@@ -177,6 +183,7 @@ target_link_libraries(utils PRIVATE LuaLib PUBLIC  ${BOOST_LIB})
 target_link_libraries(${PROJECT_NAME} PRIVATE vendor utils visualiser components logic LuaLib chars PUBLIC  ${BOOST_LIB})
 target_include_directories(${PROJECT_NAME} PUBLIC 
   ../vendor/SDL/include/SDL3
+  ../SDL_ttf/include/SDL3_ttf
   utils/
   ../vendor/CppConsoleGameLibrary
   visualiser/

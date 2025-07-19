@@ -28,19 +28,19 @@
 #ifndef SDL_events_h_
 #define SDL_events_h_
 
-#include <SDL3/SDL_audio.h>
-#include <SDL3/SDL_error.h>
-#include <SDL3/SDL_gamepad.h>
-#include <SDL3/SDL_joystick.h>
-#include <SDL3/SDL_keyboard.h>
-#include <SDL3/SDL_mouse.h>
-#include <SDL3/SDL_pen.h>
-#include <SDL3/SDL_stdinc.h>
-#include <SDL3/SDL_touch.h>
-#include <SDL3/SDL_video.h>
-#include <SDL3/SDL_camera.h>
+#include <../vendor/SDL/include/SDL3/SDL_audio.h>
+#include <../vendor/SDL/include/SDL3/SDL_error.h>
+#include <../vendor/SDL/include/SDL3/SDL_gamepad.h>
+#include <../vendor/SDL/include/SDL3/SDL_joystick.h>
+#include <../vendor/SDL/include/SDL3/SDL_keyboard.h>
+#include <../vendor/SDL/include/SDL3/SDL_mouse.h>
+#include <../vendor/SDL/include/SDL3/SDL_pen.h>
+#include "../vendor/SDL/include/SDL3/SDL_stdinc.h"
+#include <../vendor/SDL/include/SDL3/SDL_touch.h>
+#include <../vendor/SDL/include/SDL3/SDL_video.h>
+#include <../vendor/SDL/include/SDL3/SDL_camera.h>
 
-#include <SDL3/SDL_begin_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -1473,6 +1473,6 @@ extern SDL_DECLSPEC SDL_Window * SDLCALL SDL_GetWindowFromEvent(const SDL_Event 
 #ifdef __cplusplus
 }
 #endif
-#include <SDL3/SDL_close_code.h>
+#include <../vendor/SDL/include/SDL3/SDL_close_code.h>
 
 #endif /* SDL_events_h_ */

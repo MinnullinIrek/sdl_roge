@@ -11,8 +11,8 @@
 */
 /* Simple program: Test surface blitting. */
 
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
+#include "../vendor/SDL/include/SDL3/SDL.h"
+#include "../vendor/SDL/include/SDL3/SDL_main.h"
 
 #ifdef SDL_PLATFORM_EMSCRIPTEN
 #include <emscripten/emscripten.h>
